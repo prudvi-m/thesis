@@ -85,7 +85,8 @@
         <div id="num-of-files"class="my-2">No Files Choosen</div>
         <div id="divSubmit" class="container my-4 mx-auto">
           {% csrf_token %}
-          <button type="submit" class="upload-button">Submit</button>
+          <button type="submit" class="upload-button">
+            <i class="fa fa-paper-plane" aria-hidden="true"></i>&nbsp; Submit</button>
         </div>
         <ul id="files-list"></ul>
       </div>
@@ -121,10 +122,10 @@
           let listItem = document.createElement("li");
           let fileName = i.name;
           let fileSize = (i.size / 1024).toFixed(1);
-          listItem.innerHTML = `<p>${fileName}</p><p>${fileSize}KB</p>`;
+          listItem.innerHTML = `<p><i class="fa fa-file" aria-hidden="true"></i>&nbsp; ${fileName}</p><p>${fileSize}KB</p>`;
           if (fileSize >= 1024) {
             fileSize = (fileSize / 1024).toFixed(1);
-            listItem.innerHTML = `<p>${fileName}</p><p>${fileSize}MB</p>`;
+            listItem.innerHTML = `<p><i class="fa fa-file" aria-hidden="true"></i>&nbsp; ${fileName}</p><p>${fileSize}MB</p>`;
           }
           fileList.appendChild(listItem);
         }
