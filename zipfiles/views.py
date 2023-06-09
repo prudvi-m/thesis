@@ -80,6 +80,9 @@ def files(request):
 
 def send_files(request):
     if request.method == "POST" :
+        fileSize = format(f.size / 1024, f".1f")
+        if fileSize >= 1024:
+           fileSize = format(f.size / 1024, f".1f")
         myfile = request.FILES.getlist("uploadfoles")
         for f in myfile:
             myuploadfile(f_name=f.name,myfiles=f).save()
