@@ -26,7 +26,7 @@ def add(request):
       new_db_name = form.cleaned_data['db_name']
       new_email = form.cleaned_data['email']
       new_is_build_succeeded = form.cleaned_data['is_build_succeeded']
-      new_gpa = form.cleaned_data['gpa']
+      new_dotnet_version = form.cleaned_data['dotnet_version']
 
       new_student = Zipfile(
         id_number=new_id_number,
@@ -34,7 +34,7 @@ def add(request):
         db_name=new_db_name,
         email=new_email,
         is_build_succeeded=new_is_build_succeeded,
-        gpa=new_gpa
+        dotnet_version=new_dotnet_version
       )
       new_student.save()
       return render(request, 'zipfiles/add.html', {

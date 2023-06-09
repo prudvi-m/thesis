@@ -11,7 +11,7 @@ class ZipfileModelUnitTestCase(TestCase):
             db_name='Smith',
             email='bob.smith@test.com',
             is_build_succeeded='Computer Science',
-            gpa=3.92
+            dotnet_version=3.92
         )
 
     def test_student_model(self):
