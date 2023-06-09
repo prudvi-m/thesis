@@ -2,8 +2,6 @@
 
 This is a zipfile management system built using **Django 4**, **HTML 5**, **CSS 3**, and **Bootstrap 5**.
 
-![plot](https://github.com/BobsProgrammingAcademy/Zipfile-Management-System/blob/master/zipfiles/static/images/homepage.png?raw=true)
-
 
 ## Table of Contents 
 - [Prerequisites](#prerequisites)
@@ -91,4 +89,4 @@ Go to http://127.0.0.1:8000/ to view the application.
 
 ## Copyright and License
 
-Copyright © 2022 Bob's Programming Academy. Code released under the MIT license.
+Copyright © 2023 Governors State University. Code released under the MIT license.

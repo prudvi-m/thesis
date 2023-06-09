@@ -3,7 +3,9 @@ env/
 *.log
 *.pot
 *.pyc
+*.py[cod]
 __pycache__
+__pycache__/
 thesis_ui/__pycache__/*
 zipfiles/__pycache__/*
 media
