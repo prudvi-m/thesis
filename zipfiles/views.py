@@ -2,14 +2,14 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse
 
-from .models import Zipfile, myuploadfile
+from .models import Fileslist, myuploadfile
 from .forms import ZipfileForm
 
 
 # Create your views here.
 def index(request):
   return render(request, 'zipfiles/index.html', {
-    'zipfiles': Zipfile.objects.all()
+    'zipfiles': Fileslist.objects.all()
   })
 
 
@@ -28,7 +28,7 @@ def add(request):
       new_is_build_succeeded = form.cleaned_data['is_build_succeeded']
       new_dotnet_version = form.cleaned_data['dotnet_version']
 
-      new_student = Zipfile(
+      new_student = Fileslist(
         id_number=new_id_number,
         user_name=new_user_name,
         db_name=new_db_name,
@@ -50,7 +50,7 @@ def add(request):
 
 def edit(request, id):
   if request.method == 'POST':
-    zipfile = Zipfile.objects.get(pk=id)
+    zipfile = Fileslist.objects.get(pk=id)
     form = ZipfileForm(request.POST, instance=zipfile)
     if form.is_valid():
       form.save()
@@ -59,7 +59,7 @@ def edit(request, id):
         'success': True
       })
   else:
-    zipfile = Zipfile.objects.get(pk=id)
+    zipfile = Fileslist.objects.get(pk=id)
     form = ZipfileForm(instance=zipfile)
   return render(request, 'zipfiles/edit.html', {
     'form': form
@@ -68,22 +68,25 @@ def edit(request, id):
 
 def delete(request, id):
   if request.method == 'POST':
-    zipfile = Zipfile.objects.get(pk=id)
+    zipfile = Fileslist.objects.get(pk=id)
     zipfile.delete()
   return HttpResponseRedirect(reverse('index'))
 
 # Create your views here.
 def files(request):
     return render(request, 'zipfiles/files.html', {
-    'zipfiles': myuploadfile.objects.all()
+    'zipfiles': Fileslist.objects.all()
   })
 
 def send_files(request):
     if request.method == "POST" :
-        fileSize = format(f.size / 1024, f".1f")
-        if fileSize >= 1024:
-           fileSize = format(f.size / 1024, f".1f")
+        
         myfile = request.FILES.getlist("uploadfoles")
         for f in myfile:
-            myuploadfile(f_name=f.name,myfiles=f).save()
-        return HttpResponseRedirect(reverse('files'))
+            fileSize = float(format(f.size / 1024, f".1f"))
+            if fileSize >= 1024:
+              fileSize = f'{format((fileSize / 1024), f".1f")}MB'
+            else:
+              fileSize = f'{fileSize}KB'
+            Fileslist(f_name=f.name,myfiles=f,f_size=fileSize).save()
+        return HttpResponseRedirect(reverse('index'))

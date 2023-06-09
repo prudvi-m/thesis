@@ -3,7 +3,7 @@
 
 {% block body %}
 
-  <h3 class="text-center m-4">Add Zipfile</h3>
+  <h3 class="text-center m-4">Add Fileslist</h3>
   {% if success %}
     <div class="alert alert-success" role="alert">
       The new zipfile added successfully.
@@ -14,7 +14,7 @@
       <div class="col-6">
         <div class="card bg-light mb-3">
           <div class="card-header">
-            <i class="fa-solid fa-address-card fa-lg"></i> Zipfile Registration
+            <i class="fa-solid fa-address-card fa-lg"></i> Fileslist Registration
           </div>
           <div class="card-body">
             <form action="{% url 'add' %}" method="POST">

@@ -1,11 +1,11 @@
 import random
 from django.test import TestCase
-from .models import Zipfile
+from .models import Fileslist
 
 
 class ZipfileModelUnitTestCase(TestCase):
     def setUp(self):
-        self.zipfile = Zipfile.objects.create(
+        self.zipfile = Fileslist.objects.create(
             id_number=random.randint(10000, 99999),
             user_name='Bob',
             db_name='Smith',
@@ -16,4 +16,4 @@ class ZipfileModelUnitTestCase(TestCase):
 
     def test_student_model(self):
         data = self.zipfile
-        self.assertIsInstance(data, Zipfile)
+        self.assertIsInstance(data, Fileslist)
