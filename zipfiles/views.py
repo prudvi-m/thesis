@@ -1,8 +1,8 @@
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse
 
-from .models import Zipfile
+from .models import Zipfile, myuploadfile
 from .forms import ZipfileForm
 
 
@@ -71,3 +71,25 @@ def delete(request, id):
     zipfile = Zipfile.objects.get(pk=id)
     zipfile.delete()
   return HttpResponseRedirect(reverse('index'))
+
+
+
+# Create your views here.
+def files(request):
+    # context = {
+    #     "data":myuploadfile.objects.all(),
+    # }
+    # return render(request,'zipfiles/files.html',context)
+    return render(request, 'zipfiles/files.html', {
+    'zipfiles': myuploadfile.objects.all()
+  })
+
+def send_files(request):
+    if request.method == "POST" :
+        name = request.POST.get("filename")
+        myfile = request.FILES.getlist("uploadfoles")
+        
+        for f in myfile:
+            myuploadfile(f_name=name,myfiles=f).save()
+        
+        return HttpResponseRedirect(reverse('files'))

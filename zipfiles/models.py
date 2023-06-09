@@ -12,3 +12,12 @@ class Zipfile(models.Model):
 
   def __str__(self):
     return f'Zipfile: {self.user_name} {self.db_name}'
+  
+
+
+class myuploadfile(models.Model):
+    f_name = models.CharField(max_length=255)
+    myfiles = models.FileField(upload_to="")
+
+    def __str__(self):
+        return self.f_name
