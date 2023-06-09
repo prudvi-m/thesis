@@ -66,28 +66,31 @@
 
 
   </style>
-  <form action="{% url 'send_files' %}" method="POST" enctype="multipart/form-data">
-    {% comment %} <h3 class="text-center m-4">Add Zipfile</h3> {% endcomment %}
+
+  
     {% if success %}
       <div class="alert alert-success" role="alert">
         The new zipfile added successfully.
         <a href="{% url 'index' %}" class="alert-link">Go to Home Page.</a>
       </div>
-    {% else %}
-
-    <div class="container file-upload-card">
-      <input type="file" id="file-input" multiple />
-      <label for="file-input" class="file-input-button">
-        <i class="fa-solid fa-arrow-up-from-bracket"></i>
-        &nbsp; Choose Files To Upload
-      </label>
-      <div id="num-of-files"class="my-2">No Files Choosen</div>
-      <div id="divSubmit" class="container my-4 mx-auto">
-        <button type="submit" class="upload-button">Submit</button>
+    {% else %}  
+    <form action="{% url 'send_files' %}" method="POST" enctype="multipart/form-data">
+      <div class="container file-upload-card">
+        {% comment %} <h4 class="text-center m-1">Add Zipfile</h4> {% endcomment %}
+        <input type="file" id="file-input" accept=".zip" multiple name="uploadfoles" >
+        <label for="file-input" class="file-input-button">
+          <i class="fa-solid fa-arrow-up-from-bracket"></i>
+          &nbsp; Choose Files To Upload
+        </label>
+        <div id="num-of-files"class="my-2">No Files Choosen</div>
+        <div id="divSubmit" class="container my-4 mx-auto">
+          {% csrf_token %}
+          <button type="submit" class="upload-button">Submit</button>
+        </div>
+        <ul id="files-list"></ul>
       </div>
-
-      <ul id="files-list"></ul>
-    </div>
+    <form>
+    
     <!-- Script -->
     <!-- <script src="script.js"></script> -->
     <script>
@@ -113,9 +116,6 @@
           $("#divSubmit").show();
         else
           $("#divSubmit").hide();
-
-        
-
         for (var i of fileInput.files) {
           let reader = new FileReader();
           let listItem = document.createElement("li");
@@ -130,8 +130,6 @@
         }
       });
     </script>
-
-    
-  <form>
+  
   {% endif %}
 {% endblock %}

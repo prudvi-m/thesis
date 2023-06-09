@@ -80,10 +80,9 @@ def files(request):
 
 def send_files(request):
     if request.method == "POST" :
-        name = request.POST.get("filename")
         myfile = request.FILES.getlist("uploadfoles")
         
         for f in myfile:
-            myuploadfile(f_name=name,myfiles=f).save()
+            myuploadfile(f_name=f.name,myfiles=f).save()
         
         return HttpResponseRedirect(reverse('files'))
