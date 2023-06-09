@@ -72,14 +72,8 @@ def delete(request, id):
     zipfile.delete()
   return HttpResponseRedirect(reverse('index'))
 
-
-
 # Create your views here.
 def files(request):
-    # context = {
-    #     "data":myuploadfile.objects.all(),
-    # }
-    # return render(request,'zipfiles/files.html',context)
     return render(request, 'zipfiles/files.html', {
     'zipfiles': myuploadfile.objects.all()
   })
