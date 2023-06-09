@@ -12,7 +12,7 @@ class ZipfileForm(forms.ModelForm):
       'db_name': 'Database Name',
       'email': 'Email',
       'is_build_succeeded': 'Is Build Succeeded',
-      'gpa': 'GPA'
+      'gpa': 'Dotner version'
     }
     widgets = {
       'id_number': forms.NumberInput(attrs={'class': 'form-control'}),
