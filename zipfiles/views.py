@@ -2,7 +2,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 from .models import Fileslist
-from .forms import ZipfileForm
+from .forms import FileForm
 
 
 # Create your views here.
@@ -18,7 +18,7 @@ def view_student(request, id):
 
 def add(request):
   if request.method == 'POST':
-    form = ZipfileForm(request.POST)
+    form = FileForm(request.POST)
     if form.is_valid():
       new_id_number = form.cleaned_data['id_number']
       new_user_name = form.cleaned_data['user_name']
@@ -27,7 +27,7 @@ def add(request):
       new_is_build_succeeded = form.cleaned_data['is_build_succeeded']
       new_dotnet_version = form.cleaned_data['dotnet_version']
 
-      new_student = Fileslist(
+      new_file = Fileslist(
         id_number=new_id_number,
         user_name=new_user_name,
         db_name=new_db_name,
@@ -35,22 +35,22 @@ def add(request):
         is_build_succeeded=new_is_build_succeeded,
         dotnet_version=new_dotnet_version
       )
-      new_student.save()
+      new_file.save()
       return render(request, 'zipfiles/add.html', {
-        'form': ZipfileForm(),
+        'form': FileForm(),
         'success': True
       })
   else:
-    form = ZipfileForm()
+    form = FileForm()
   return render(request, 'zipfiles/add.html', {
-    'form': ZipfileForm()
+    'form': FileForm()
   })
 
 
 def edit(request, id):
   if request.method == 'POST':
     zipfile = Fileslist.objects.get(pk=id)
-    form = ZipfileForm(request.POST, instance=zipfile)
+    form = FileForm(request.POST, instance=zipfile)
     if form.is_valid():
       form.save()
       return render(request, 'zipfiles/edit.html', {
@@ -59,7 +59,7 @@ def edit(request, id):
       })
   else:
     zipfile = Fileslist.objects.get(pk=id)
-    form = ZipfileForm(instance=zipfile)
+    form = FileForm(instance=zipfile)
   return render(request, 'zipfiles/edit.html', {
     'form': form
   })

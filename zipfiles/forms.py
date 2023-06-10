@@ -2,7 +2,7 @@ from django import forms
 from .models import Fileslist
 
 
-class ZipfileForm(forms.ModelForm):
+class FileForm(forms.ModelForm):
   class Meta:
     model = Fileslist
     fields = ['id_number', 'user_name', 'db_name', 'email', 'is_build_succeeded', 'dotnet_version']
