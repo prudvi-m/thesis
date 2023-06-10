@@ -1,8 +1,7 @@
 from django.http import HttpResponseRedirect
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from django.urls import reverse
-
-from .models import Fileslist, myuploadfile
+from .models import Fileslist
 from .forms import ZipfileForm
 
 
