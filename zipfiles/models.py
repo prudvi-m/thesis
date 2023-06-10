@@ -1,5 +1,7 @@
 from django.db import models
-
+from django.db.models.signals import pre_delete
+from django.dispatch import receiver
+import os
 
 # Create your models here.
 class Fileslist(models.Model):
@@ -22,3 +24,17 @@ class myuploadfile(models.Model):
 
     def __str__(self):
         return self.f_name
+
+
+@receiver(pre_delete, sender=Fileslist)
+def delete_file_on_delete(sender, instance, **kwargs):
+    # Get the file path
+    file_path = instance.myfiles.path
+    
+    # Check if the file exists and delete it
+    if os.path.exists(file_path):
+        os.remove(file_path)
+
+
+pre_delete.connect(delete_file_on_delete, sender=Fileslist)
+
