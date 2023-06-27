@@ -46,11 +46,14 @@
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
   </head>
   <body class="d-flex flex-column min-vh-100">
+
     <div id="loading-overlay" style="display: none;">
       <div id="loading-container">
         <span class="loading-spinner"></span>
+        <p id="loading-message">loading...</p>
       </div>
     </div>
+
     <div id="parentDiv">
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
@@ -97,9 +100,11 @@
           var $loadingOverlay = $('<div id="loading-overlay">');
           var $loadingContainer = $('<div id="loading-container">');
           var $loadingSpinner = $('<span class="loading-spinner">');
+          var $loadingMessage = $('<span id="loading-message">loading....</span>');
     
           // Append loading elements to the loading overlay
           $loadingContainer.append($loadingSpinner);
+          $loadingContainer.append($loadingMessage);
           $loadingOverlay.append($loadingContainer);
     
           // Show the loading overlay and symbol
@@ -112,7 +117,6 @@
           $(this).find('button[type="submit"]').prop('disabled', true);
         });
       });
-      </script>
-
+    </script>
   </body>
 </html>
