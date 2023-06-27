@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sample Dashboard</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  <style>
+    /* Add custom styles here */
+    .dotnet-graph {
+      height: 200px;
+      margin-bottom: 20px;
+    }
+    .database-graph {
+      height: 200px;
+      margin-bottom: 20px;
+    }
+    .build-graph {
+      height: 200px;
+      margin-bottom: 20px;
+    }
+    .success {
+      background-color: #5cb85c;
+      color: #fff;
+    }
+    .failed {
+      background-color: #d9534f;
+      color: #fff;
+    }
+    .list-group {
+      margin-top: 20px;
+    }
+    .list-group-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .list-group-item span {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Sample Dashboard</h1>
+
+    <div class="row">
+      <div class="col-md-4">
+        <h2>DotNet Versions</h2>
+        <div class="dotnet-graph">
+          <canvas id="dotnetChart"></canvas>
+        </div>
+        <ul class="list-group">
+          <li class="list-group-item">DotNet 5.0: <span>3</span></li>
+          <li class="list-group-item">DotNet 6.0: <span>5</span></li>
+          <li class="list-group-item">DotNet 7.0: <span>2</span></li>
+        </ul>
+      </div>
+
+      <div class="col-md-4">
+        <h2>Databases</h2>
+        <div class="database-graph">
+          <canvas id="databaseChart"></canvas>
+        </div>
+        <ul class="list-group">
+          <li class="list-group-item">SqlServer: <span>10</span></li>
+          <li class="list-group-item">Sqlite: <span>5</span></li>
+        </ul>
+      </div>
+
+      <div class="col-md-4">
+        <h2>Build Status</h2>
+        <div class="build-graph">
+          <canvas id="buildChart"></canvas>
+        </div>
+        <ul class="list-group">
+          <li class="list-group-item">Build Failed: <span>2</span></li>
+          <li class="list-group-item">Build Succeeded: <span>15</span></li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    // DotNet Versions Chart
+    var dotnetData = {
+      labels: ['DotNet 5.0', 'DotNet 6.0', 'DotNet 7.0'],
+      datasets: [{
+        data: [3, 5, 2],
+        backgroundColor: ['#007bff', '#dc3545', '#ffc107'],
+      }]
+    };
+    var dotnetChartElement = document.getElementById('dotnetChart');
+    var dotnetChart = new Chart(dotnetChartElement, {
+      type: 'doughnut',
+      data: dotnetData,
+    });
+
+    // Databases Chart
+    var databaseData = {
+      labels: ['SqlServer', 'Sqlite'],
+      datasets: [{
+        data: [10, 5],
+        backgroundColor: ['#28a745', '#ffc107'],
+      }]
+    };
+    var databaseChartElement = document.getElementById('databaseChart');
+    var databaseChart = new Chart(databaseChartElement, {
+      type: 'doughnut',
+      data: databaseData,
+    });
+
+    // Build Status Chart
+    var buildData = {
+      labels: ['Build Failed', 'Build Succeeded'],
+      datasets: [{
+        data: [2, 15],
+        backgroundColor: ['#dc3545', '#28a745'],
+      }]
+    };
+    var buildChartElement = document.getElementById('buildChart');
+    var buildChart = new Chart(buildChartElement, {
+      type: 'doughnut',
+      data: buildData,
+    });
+  </script>
+</body>
+</html>

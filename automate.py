@@ -200,6 +200,6 @@ def loop_zip_data():
 if __name__ == "__main__":
     os.chdir(extract_path)
     print()
-    # delete_extracted_folders()
+    delete_extracted_folders()
     # extract_zip()
-    loop_zip_data()
+    # loop_zip_data()
