@@ -2,6 +2,11 @@
 
 {% block body %}
 <h3 class="m-4">All Zipfiles</h3>
+
+<form action="{% url 'automate' %}" method="GET">
+  <button id="myButton" class="btn btn-primary m-3">Run Automation</button>
+</form>
+
 <div class="row">
   <div class="col-12">
     {% if zipfiles %}

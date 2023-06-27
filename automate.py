@@ -184,6 +184,7 @@ def loop_zip_data():
                 # print(f" Database Name: {database["database_name"] or ''}")
                 print(f" Version:  {version}\n");
                 print("\n******************************************\n")
+                return results
 
         except Exception as e:
             print(e)
@@ -196,6 +197,12 @@ def loop_zip_data():
     print(results)
     return results,worked
 #endregion
+
+def delete_extracted_and_run():
+    os.chdir(extract_path)
+    delete_extracted_folders()
+    extract_zip()
+    return loop_zip_data()
 
 if __name__ == "__main__":
     os.chdir(extract_path)

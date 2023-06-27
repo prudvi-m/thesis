@@ -1,8 +1,11 @@
+import json
+import os
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 from .models import Fileslist
 from .forms import FileForm
+from automate import delete_extracted_and_run 
 
 
 # Create your views here.
@@ -11,6 +14,22 @@ def index(request):
     'zipfiles': Fileslist.objects.all()
   })
 
+def automate(request):
+  # current_path = os.getcwd()
+  # extract_path = f"{current_path}/{'media'}"
+  # print(extract_path)
+  # result = delete_extracted_and_run(current_path,extract_path)
+  result = delete_extracted_and_run()
+
+  # Convert JSON data to a string
+  json_string = json.dumps(result)
+  
+  return render(request, 'zipfiles/sample.html', {
+    'json_string': json_string
+  })
+  # return render(request, 'zipfiles/index.html', {
+  #   'zipfiles': Fileslist.objects.all()
+  # })
 
 def view_student(request, id):
   return HttpResponseRedirect(reverse('index'))
