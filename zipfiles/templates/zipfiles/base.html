@@ -8,36 +8,78 @@
     <title>Zip File Management System</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+
+    <style>
+      .blur {
+        filter: blur(0.3px); /* Apply blur effect */
+        pointer-events: none; /* Disable pointer events on the blurred element */
+      }
+    
+      #loading-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.8);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    
+      .loading-spinner {
+        display: inline-block;
+        border: 4px solid #f3f3f3; /* Light gray */
+        border-top: 4px solid #3498db; /* Blue */
+        border-radius: 50%;
+        width: 70px;
+        height: 70px;
+        animation: spin 1s linear infinite;
+      }
+    
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+    </style>
+
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
   </head>
   <body class="d-flex flex-column min-vh-100">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="{% url 'index' %}">
-          <i class="fa-solid fa-graduation-cap fa-lg"></i> Zip File Management System
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarColor01">
-          <ul class="navbar-nav me-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'index' %}">
-                <i class="fa-solid fa-list fa-lg"></i> All Files
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'add' %}">
-                <i class="fa-solid fa-plus fa-lg"></i> Add Files
-              </a>
-            </li>
-          </ul>
-        </div>
+    <div id="loading-overlay" style="display: none;">
+      <div id="loading-container">
+        <span class="loading-spinner"></span>
       </div>
-    </nav>
-    <div class="container-fluid">
-      {% block body %}
-      {% endblock %}
+    </div>
+    <div id="parentDiv">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="{% url 'index' %}">
+            <i class="fa-solid fa-graduation-cap fa-lg"></i> Zip File Management System
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav me-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'index' %}">
+                  <i class="fa-solid fa-list fa-lg"></i> All Files
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'add' %}">
+                  <i class="fa-solid fa-plus fa-lg"></i> Add Files
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <div class="container-fluid">
+        {% block body %}
+        {% endblock %}
+      </div>
     </div>
     <footer class="mt-auto mb-4">
       <div class="text-center">
@@ -47,5 +89,30 @@
       </div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      $(document).ready(function() {
+        $('body').on('submit', 'form', function() {
+          var $parentDiv = $('#parentDiv');
+          var $loadingOverlay = $('<div id="loading-overlay">');
+          var $loadingContainer = $('<div id="loading-container">');
+          var $loadingSpinner = $('<span class="loading-spinner">');
+    
+          // Append loading elements to the loading overlay
+          $loadingContainer.append($loadingSpinner);
+          $loadingOverlay.append($loadingContainer);
+    
+          // Show the loading overlay and symbol
+          $parentDiv.append($loadingOverlay);
+    
+          // Apply the blur effect to the parentDiv
+          $parentDiv.addClass('blur');
+    
+          // Disable the submit button to prevent multiple submissions
+          $(this).find('button[type="submit"]').prop('disabled', true);
+        });
+      });
+      </script>
+
   </body>
 </html>

@@ -4,7 +4,8 @@
 <h3 class="m-4">All Zipfiles</h3>
 
 <form action="{% url 'automate' %}" method="GET">
-  <button id="myButton" class="btn btn-primary m-3">Run Automation</button>
+  {% csrf_token %}
+  <button id="myButton" type="submit" class="btn btn-primary m-3">Run Automation</button>
 </form>
 
 <div class="row">
