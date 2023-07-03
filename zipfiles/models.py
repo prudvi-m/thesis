@@ -11,9 +11,8 @@ class File_Results(models.Model):
   f_name = models.CharField(max_length=255,null=True)
   f_size = models.CharField(max_length=50,null=True)
   myfiles = models.FileField(upload_to="")
-  user_name = models.CharField(max_length=50,null=True)
+  user_name = models.ForeignKey('UserNamesList', on_delete=models.CASCADE, null=True)
   db_name = models.CharField(max_length=50,null=True)
-  email = models.EmailField(max_length=100,null=True)
   is_build_succeeded = models.CharField(max_length=50,null=True)
   dotnet_version = models.CharField(max_length=20,null=True)
   
@@ -30,14 +29,6 @@ def delete_file_on_delete(sender, instance, **kwargs):
         os.remove(file_path)
 
 pre_delete.connect(delete_file_on_delete, sender=File_Results)
-
-
-class myuploadfile(models.Model):
-    f_name = models.CharField(max_length=255)
-    myfiles = models.FileField(upload_to="")
-
-    def __str__(self):
-        return self.f_name
 
 class UserNamesList(models.Model):
     user_name = models.CharField(
