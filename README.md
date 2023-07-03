@@ -1,4 +1,4 @@
-# Fileslist Management System
+# File_Results Management System
 
 This is a zipfile management system built using **Django 4**, **HTML 5**, **CSS 3**, and **Bootstrap 5**.
 
@@ -72,7 +72,7 @@ From the **root** directory run:
 python manage.py createsuperuser
 ```
 
-When prompted, enter a username, email, and password.
+When prompted, enter a user_name, email, and password.
 
 ## Run the application
 

@@ -13,7 +13,7 @@
     {% if zipfiles %}
     <div class="card bg-light ms-4 me-4 mb-4">
       <div class="card-header">
-        <i class="fa-solid fa-list fa-lg"></i> Fileslist Records
+        <i class="fa-solid fa-list fa-lg"></i> File_Results Records
       </div>
       <div class="card-body">
         <p class="card-text">
@@ -44,13 +44,13 @@
                         <i class="fa-solid fa-circle-info fa-lg"></i>
                       </button>
 
-                      <!-- Modal - View Fileslist -->
+                      <!-- Modal - View File_Results -->
                       <div class="modal" id="myModal{{zipfile.id}}" tabindex="-1" aria-labelledby="myModalLabel1" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                           <div class="modal-content">
                             <div class="modal-header">
                               <h5 class="modal-title">
-                                Fileslist: {{ zipfile.user_name }} {{ zipfile.db_name }}
+                                File_Results: {{ zipfile.user_name }} {{ zipfile.db_name }}
                               </h5>
                               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true"></span>
@@ -58,7 +58,7 @@
                             </div>
                             <div class="modal-body">
                               <ul class="list-unstyled">
-                                <li>Fileslist Number: <strong>{{ zipfile.id_number }}</strong></li>
+                                <li>File_Results Number: <strong>{{ zipfile.id_number }}</strong></li>
                                 <li>First Name: <strong>{{ zipfile.user_name }}</strong></li>
                                 <li>Last Name: <strong>{{ zipfile.db_name }}</strong></li>
                                 <li>Email: <strong>{{ zipfile.email }}</strong></li>
@@ -81,13 +81,13 @@
                         <i class="fa-solid fa-trash-can fa-lg"></i>
                       </button>
 
-                      <!-- Modal - Delete Fileslist -->
+                      <!-- Modal - Delete File_Results -->
                       <div class="modal" id="delete{{zipfile.id}}" tabindex="-1" aria-labelledby="myModalLabel2" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                           <div class="modal-content">
                             <div class="modal-header">
                               <h5 class="modal-title">
-                                Fileslist: {{ zipfile.user_name }} {{ zipfile.db_name }}
+                                File_Results: {{ zipfile.user_name }} {{ zipfile.db_name }}
                               </h5>
                               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true"></span>
@@ -116,7 +116,7 @@
       </div>
     </div>
     {% else %}
-      <h5 class="alert alert-primary ms-4 me-4">No Fileslist Records</h5>
+      <h5 class="alert alert-primary ms-4 me-4">No File_Results Records</h5>
     {% endif %}
   </div>
 </div>

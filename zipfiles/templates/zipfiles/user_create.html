@@ -1,0 +1,36 @@
+{% extends "zipfiles/base.html" %}
+
+{% block body %}
+<div class="container">
+  <h1>Create/Update MyModel</h1>
+  {% comment %} <form method="post" class="needs-validation" novalidate>
+    {% csrf_token %}
+    <div class="mb-3">
+      <label for="{{ form.user_name.id_for_label }}" class="form-label">Username</label>
+      {{ form.user_name }}
+      <div class="invalid-feedback">
+        {% for error in form.user_name.errors %}
+        {{ error }}
+        {% endfor %}
+      </div>
+    </div>
+    <div class="mb-3 form-check">
+      {{ form.enable }}
+      <label class="form-check-label" for="{{ form.enable.id_for_label }}">Enable</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+  </form> {% endcomment %}
+
+
+  <form method="post">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="id_user_name">Username:</label>
+      <input type="text" class="form-control" id="id_user_name" name="user_name" required>
+      <small class="form-text text-muted">Enter a single username or multiple usernames separated by commas.</small>
+    </div>
+    <button type="submit" class="btn btn-primary">Create User(s)</button>
+  </form>
+  
+</div>
+{% endblock %}

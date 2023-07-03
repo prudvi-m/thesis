@@ -9,5 +9,9 @@ urlpatterns = [
   path('delete/<int:id>/', views.delete, name='delete'),
   path('files/',views.files,name='files'),
   path('automate/', views.automate, name='automate'),
-  path('send_files/',views.send_files,name='send_files')
+  path('send_files/',views.send_files,name='send_files'),
+  path('user_list/', views.user_list, name='user_list'),
+  path('user_create/', views.user_create, name='user_create'),
+  path('user_delete/<str:pk>/', views.delete_user, name='user_delete'),
+  path('user_update/<str:pk>/', views.user_update, name='user_update'),
 ]
