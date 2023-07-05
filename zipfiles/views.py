@@ -22,6 +22,13 @@ def automate(request):
   # json_string = json.dumps(result)
   print(json.dumps(result))
   
+  files = File_Results.objects.all()
+  files_len = len(files)
+  result_len = len(result)
+  r = min([files_len,result_len])
+  for i in range(r):
+     
+     
   
   return render(request, 'zipfiles/index.html', {
     'zipfiles': File_Results.objects.all()
