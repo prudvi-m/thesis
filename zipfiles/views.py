@@ -27,9 +27,9 @@ def automate(request):
   result_len = len(result)
   r = min([files_len,result_len])
   for i in range(r):
-     
-     
-  
+    pass
+
+
   return render(request, 'zipfiles/index.html', {
     'zipfiles': File_Results.objects.all()
   })

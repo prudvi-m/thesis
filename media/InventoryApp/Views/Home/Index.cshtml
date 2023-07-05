@@ -1,0 +1,58 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<form asp-action="Index" method="post">
+    <div class="form-group">
+        <label for="productName">Product Name:</label>
+        <input type="text" id="productName" name="productName" maxlength="50" required class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label for="productCode">Product Code:</label>
+        <input type="number" id="productCode" name="productCode" required class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label for="category">Category:</label>
+        <select id="category" name="category" class="form-control">
+            <option value="Clothing">Clothing</option>
+            <option value="Food and Grocery">Food and Grocery</option>
+            <option value="Electronics">Electronics</option>
+            <option value="Home and Garden">Home and Garden</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="productDescription">Product Description:</label>
+        <textarea id="productDescription" name="productDescription" maxlength="200" required class="form-control"></textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="price">Price:</label>
+        <input type="number" id="price" name="price" step="0.01" min="0" required class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label for="warehouse">Warehouse:</label>
+        <select id="warehouse" name="warehouse" class="form-control">
+            <option value="Chicago">Chicago</option>
+            <option value="New York">New York</option>
+            <option value="San Francisco">San Francisco</option>
+            <option value="Miami">Miami</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="vendor">Vendor:</label>
+        <input type="text" id="vendor" name="vendor" maxlength="50" required class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" name="quantity" min="1" max="100" required class="form-control">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="reset" class="btn btn-secondary" asp-action="Index">Clear</button>
+</form>
