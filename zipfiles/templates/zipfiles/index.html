@@ -41,6 +41,7 @@
                 <td>{{ zipfile.dotnet_version|default:"" }}</td>
                 <td>{{ zipfile.instruction_passed|default:"" }}</td>
                 <td>
+
                   <button type="button" class="btn btn-success me-1" href="{% url 'view_student' zipfile.id %}" data-bs-toggle="modal" data-bs-target="#myModal{{zipfile.id}}">
                     <i class="fa-solid fa-circle-info fa-lg"></i>
                   </button>
@@ -50,9 +51,11 @@
                     <div class="modal-dialog" role="document">
                       <div class="modal-content">
                         <div class="modal-header">
+
                           <h5 class="modal-title">
-                            File_Results: {{ zipfile.user_name }} {{ zipfile.db_name }}
+                            File Results {{ zipfile.f_name|default:"" }} {{ zipfile.db_name|default:"" }}
                           </h5>
+
                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true"></span>
                           </button>
@@ -61,7 +64,7 @@
                           <ul class="list-unstyled">
                             <li>File_Results Number: <strong>{{ zipfile.id_number }}</strong></li>
                             <li>First Name: <strong>{{ zipfile.user_name }}</strong></li>
-                            <li>Last Name: <strong>{{ zipfile.db_name }}</strong></li>
+                            <li>Database Name: <strong>{{ zipfile.db_name }}</strong></li>
                             <li>Email: <strong>{{ zipfile.email }}</strong></li>
                             <li>Field of Study: <strong>{{ zipfile.is_build_succeeded }}</strong></li>
                             <li>Dotner version: <strong>{{ zipfile.dotnet_version }}</strong></li>
@@ -88,7 +91,7 @@
                       <div class="modal-content">
                         <div class="modal-header">
                           <h5 class="modal-title">
-                            File_Results: {{ zipfile.user_name }} {{ zipfile.db_name }}
+                            File {{ zipfile.f_name|default:"" }} {{ zipfile.db_name|default:"" }}
                           </h5>
                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true"></span>
@@ -107,7 +110,6 @@
                       </div>
                     </div>
                   </div>
-
                 </td>
               </tr>
             {% endfor %}
