@@ -5,12 +5,12 @@ from django.urls import reverse
 from .models import File_Results, UserNamesList
 from .forms import FileForm, UserNamesListForm
 from automate import delete_extracted_and_run
+from .util import extract_username_and_assignment
 
 # Create your views here.
 
 
 #region Files Crud
-
 def index(request):
   return render(request, 'zipfiles/index.html', {
     'zipfiles': File_Results.objects.all()
@@ -20,10 +20,11 @@ def automate(request):
   result = delete_extracted_and_run()
 
   # Convert JSON data to a string
-  json_string = json.dumps(result)
+  # json_string = json.dumps(result)
+  print(json.dumps(result))
   
-  return render(request, 'zipfiles/sample.html', {
-    'json_string': json_string
+  return render(request, 'zipfiles/index.html', {
+    'zipfiles': File_Results.objects.all()
   })
 
 def view_student(request, id):
@@ -95,12 +96,16 @@ def send_files(request):
         
         myfile = request.FILES.getlist("uploadfoles")
         for f in myfile:
+            
+            user_name, assignment_number = extract_username_and_assignment(f.name)
+
+
             fileSize = float(format(f.size / 1024, f".1f"))
             if fileSize >= 1024:
               fileSize = f'{format((fileSize / 1024), f".1f")}MB'
             else:
               fileSize = f'{fileSize}KB'
-            File_Results(f_name=f.name,myfiles=f,f_size=fileSize).save()
+            File_Results(f_name=f.name,myfiles=f,f_size=fileSize, user_name = user_name, assignment_number = assignment_number).save()
         return HttpResponseRedirect(reverse('index'))
 
 #endregion 

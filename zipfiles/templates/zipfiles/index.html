@@ -11,108 +11,108 @@
 <div class="row">
   <div class="col-12">
     {% if zipfiles %}
-    <div class="card bg-light ms-4 me-4 mb-4">
-      <div class="card-header">
-        <i class="fa-solid fa-list fa-lg"></i> File_Results Records
-      </div>
-      <div class="card-body">
-        <p class="card-text">
-          <div class="table-responsive">
-            <table class="table table-hover">
-              <thead>
-                <tr>
-                  <th scope="col">File Name</th>
-                  <th scope="col">File Size</th>
-                  <th scope="col">Last Name</th>
-                  <th scope="col">Email</th>
-                  <th scope="col">Field of Study</th>
-                  <th scope="col">Dotner version</th>
-                  <th scope="col">Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {% for zipfile in zipfiles %}
-                  <tr>
-                    <td>{{ zipfile.f_name }}</td>
-                    <td>{{ zipfile.f_size }}</td>
-                    <td>{{ zipfile.db_name }}</td>
-                    <td>{{ zipfile.email }}</td>
-                    <td>{{ zipfile.is_build_succeeded }}</td>
-                    <td>{{ zipfile.dotnet_version }}</td>
-                    <td>
-                      <button type="button" class="btn btn-success me-1" href="{% url 'view_student' zipfile.id %}" data-bs-toggle="modal" data-bs-target="#myModal{{zipfile.id}}">
-                        <i class="fa-solid fa-circle-info fa-lg"></i>
-                      </button>
+    <div class="ms-4 me-4 mb-4">
+      <div>
+        <table class="table table-hover">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">File name</th>
+              <th scope="col">File Size</th>
+              <th scope="col">Database</th>
+              <th scope="col">Database Type</th>
+              <th scope="col">Email</th>
+              <th scope="col">Build</th>
+              <th scope="col">Assignment</th>
+              <th scope="col">Version</th>
+              <th scope="col">Instruction</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for zipfile in zipfiles %}
+              <tr>                
+                <td>{{ zipfile.f_name|default:"" }}</td>
+                <td>{{ zipfile.f_size|default:"" }}</td>
+                <td>{{ zipfile.db_name|default:"" }}</td>
+                <td>{{ zipfile.db_type|default:"" }}</td>
+                <td>{{ zipfile.email|default:"" }}</td>
+                <td>{{ zipfile.is_build_succeeded|default:"" }}</td>
+                <td>{{ zipfile.assignment_number|default:"" }}</td>
+                <td>{{ zipfile.dotnet_version|default:"" }}</td>
+                <td>{{ zipfile.instruction_passed|default:"" }}</td>
+                <td>
+                  <button type="button" class="btn btn-success me-1" href="{% url 'view_student' zipfile.id %}" data-bs-toggle="modal" data-bs-target="#myModal{{zipfile.id}}">
+                    <i class="fa-solid fa-circle-info fa-lg"></i>
+                  </button>
 
-                      <!-- Modal - View File_Results -->
-                      <div class="modal" id="myModal{{zipfile.id}}" tabindex="-1" aria-labelledby="myModalLabel1" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h5 class="modal-title">
-                                File_Results: {{ zipfile.user_name }} {{ zipfile.db_name }}
-                              </h5>
-                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true"></span>
-                              </button>
-                            </div>
-                            <div class="modal-body">
-                              <ul class="list-unstyled">
-                                <li>File_Results Number: <strong>{{ zipfile.id_number }}</strong></li>
-                                <li>First Name: <strong>{{ zipfile.user_name }}</strong></li>
-                                <li>Last Name: <strong>{{ zipfile.db_name }}</strong></li>
-                                <li>Email: <strong>{{ zipfile.email }}</strong></li>
-                                <li>Field of Study: <strong>{{ zipfile.is_build_succeeded }}</strong></li>
-                                <li>Dotner version: <strong>{{ zipfile.dotnet_version }}</strong></li>
-                              </ul>
-                            </div>
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
-                            </div>
-                          </div>
+                  <!-- Modal - View File_Results -->
+                  <div class="modal" id="myModal{{zipfile.id}}" tabindex="-1" aria-labelledby="myModalLabel1" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title">
+                            File_Results: {{ zipfile.user_name }} {{ zipfile.db_name }}
+                          </h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true"></span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <ul class="list-unstyled">
+                            <li>File_Results Number: <strong>{{ zipfile.id_number }}</strong></li>
+                            <li>First Name: <strong>{{ zipfile.user_name }}</strong></li>
+                            <li>Last Name: <strong>{{ zipfile.db_name }}</strong></li>
+                            <li>Email: <strong>{{ zipfile.email }}</strong></li>
+                            <li>Field of Study: <strong>{{ zipfile.is_build_succeeded }}</strong></li>
+                            <li>Dotner version: <strong>{{ zipfile.dotnet_version }}</strong></li>
+                          </ul>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
                         </div>
                       </div>
+                    </div>
+                  </div>
 
-                      <a class="btn btn-warning me-1" href="{% url 'edit' zipfile.id %}">
-                        <i class="fa-solid fa-pen-to-square fa-lg"></i>
-                      </a>
+                  <a class="btn btn-warning me-1" href="{% url 'edit' zipfile.id %}">
+                    <i class="fa-solid fa-pen-to-square fa-lg"></i>
+                  </a>
 
-                      <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete{{zipfile.id}}">
-                        <i class="fa-solid fa-trash-can fa-lg"></i>
-                      </button>
+                  <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete{{zipfile.id}}">
+                    <i class="fa-solid fa-trash-can fa-lg"></i>
+                  </button>
 
-                      <!-- Modal - Delete File_Results -->
-                      <div class="modal" id="delete{{zipfile.id}}" tabindex="-1" aria-labelledby="myModalLabel2" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h5 class="modal-title">
-                                File_Results: {{ zipfile.user_name }} {{ zipfile.db_name }}
-                              </h5>
-                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true"></span>
-                              </button>
-                            </div>
-                            <div class="modal-body">
-                              <p>Are you sure you want to delete this zipfile?</p>
-                            </div>
-                            <div class="modal-footer">
-                              <form action="{% url 'delete' zipfile.id %}" method="POST">
-                                {% csrf_token %}
-                                <input type="submit" class="btn btn-primary" value="Delete">
-                              </form>
-                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                            </div>
-                          </div>
+                  <!-- Modal - Delete File_Results -->
+                  <div class="modal" id="delete{{zipfile.id}}" tabindex="-1" aria-labelledby="myModalLabel2" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title">
+                            File_Results: {{ zipfile.user_name }} {{ zipfile.db_name }}
+                          </h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true"></span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <p>Are you sure you want to delete this zipfile?</p>
+                        </div>
+                        <div class="modal-footer">
+                          <form action="{% url 'delete' zipfile.id %}" method="POST">
+                            {% csrf_token %}
+                            <input type="submit" class="btn btn-primary" value="Delete">
+                          </form>
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                         </div>
                       </div>
-                    </td>
-                  </tr>
-                {% endfor %}
-              </tbody>
-            </table>
-          </div>
-        </p>
+                    </div>
+                  </div>
+
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
       </div>
     </div>
     {% else %}
