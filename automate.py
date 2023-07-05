@@ -17,11 +17,9 @@ extract_path = f"{current_path}/{'media'}"
 #region 1.Zip Handlng
 def extract_zip():
     extension = ".zip"
-
     # *****
     # os.chdir(extract_path) # change directory from working dir to dir with files
     # **** 
-    
     for item in os.listdir(extract_path): # loop through items in dir
         if item.endswith(extension): # check for ".zip" extension
             file_name = os.path.abspath(item) # get full path of files
@@ -35,8 +33,6 @@ def extract_zip():
             zip_ref = zipfile.ZipFile(file_name) # create zipfile object
             zip_ref.extractall(extract_path) # extract file to dir
             zip_ref.close() # close file
-            # os.remove(file_name) # delete zipped file
-    # os.chdir(current_path)
 
     for entry in os.listdir(extract_path):
         folder_path = os.path.join(extract_path, entry)
@@ -56,12 +52,9 @@ def delete_extracted_folders():
             # Delete the folder
             shutil.rmtree(item_path)
     # os.chdir(current_path)
-
-
 #endregion
 
 #region 2.Build
-
 def execute_dotnet_build(project_path):
     cmd = ['dotnet','build']
     cwd = os.getcwd() + f'/{project_path}/'
@@ -86,7 +79,6 @@ def execute_dotnet_build(project_path):
 #endregion
 
 #region 3.Write Build Result
-
 def write_results(content, file_name = 'result_file.txt'):
     # Save the build results to the given file
     with open(file_name, 'a') as file:
@@ -161,7 +153,7 @@ def get_version(project_path):
 
 #region 6.Loop zip files
 def loop_zip_data():
-    results = []
+    results = {}
     worked = []
     # os.chdir(extract_path)
     ls_list = os.listdir()
@@ -169,18 +161,16 @@ def loop_zip_data():
     for i,ls_name in enumerate(folders):
         try :
             if not '.' in ls_name:
-                
                 build = execute_dotnet_build(ls_name)
                 if build:
                     worked.append(ls_name);
                 database = get_database(ls_name)
                 version = get_version(ls_name)
-                results.append({"build" : build, "db" : database, "version" : version})
-
+                results[ls_name] = {"build" : build, "db_name" : database["db_name"], "db_type" : database["db_type"], "version" : version}
                 print(f"{ls_name}:\n")
                 print(f" Build:    {'Build succeeded.' if build else 'failed.'}\n")
                 print(f" DB Type:  {database['db_type']}\n")
-                print(f" DB Name:  {database['db_name']}\n")
+                print(f" DB Name:  {database['db_name']}\n")    
                 # print(f" Database Name: {database["database_name"] or ''}")
                 print(f" Version:  {version}\n");
                 print("\n******************************************\n")
@@ -196,6 +186,7 @@ def loop_zip_data():
     print("worked Projects: " ,worked,'\n')
     print(results)
     return results,worked
+
 #endregion
 
 def delete_extracted_and_run():

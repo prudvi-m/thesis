@@ -9,7 +9,6 @@ from .util import extract_username_and_assignment
 
 # Create your views here.
 
-
 #region Files Crud
 def index(request):
   return render(request, 'zipfiles/index.html', {
@@ -22,6 +21,7 @@ def automate(request):
   # Convert JSON data to a string
   # json_string = json.dumps(result)
   print(json.dumps(result))
+  
   
   return render(request, 'zipfiles/index.html', {
     'zipfiles': File_Results.objects.all()
@@ -96,10 +96,7 @@ def send_files(request):
         
         myfile = request.FILES.getlist("uploadfoles")
         for f in myfile:
-            
             user_name, assignment_number = extract_username_and_assignment(f.name)
-
-
             fileSize = float(format(f.size / 1024, f".1f"))
             if fileSize >= 1024:
               fileSize = f'{format((fileSize / 1024), f".1f")}MB'

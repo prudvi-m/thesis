@@ -3,6 +3,7 @@ from django.db.models.signals import pre_delete
 from django.dispatch import receiver
 from django.core.validators import MinLengthValidator
 from django.utils import timezone
+import shutil
 import os
 
 # Create your models here.
@@ -45,9 +46,23 @@ class File_Results(models.Model):
 def delete_file_on_delete(sender, instance, **kwargs):
     # Get the file path
     file_path = instance.myfiles.path
+
+        # Get the folder path by removing the extension from the file name
+    folder_path = os.path.splitext(file_path)[0]
+
+    # Check if the folder exists and delete it
+    if os.path.exists(folder_path) and os.path.isdir(folder_path):
+        shutil.rmtree(folder_path)
     
     # Check if the file exists and delete it
     if os.path.exists(file_path):
         os.remove(file_path)
+    
+    # Get the folder path by removing the extension from the file name
+    folder_path = os.path.splitext(file_path)[0]
+
+    # Check if the folder exists and delete it
+    if os.path.exists(folder_path) and os.path.isdir(folder_path):
+        shutil.rmtree(folder_path)
 
 pre_delete.connect(delete_file_on_delete, sender=File_Results)
