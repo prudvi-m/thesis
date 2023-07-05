@@ -185,7 +185,7 @@ def loop_zip_data():
     
     print("worked Projects: " ,worked,'\n')
     print(results)
-    return results,worked
+    return results
 
 #endregion
 
