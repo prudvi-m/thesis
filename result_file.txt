@@ -1,0 +1,274 @@
+MSBuild version 17.4.1+9a89d02ff for .NET
+  Determining projects to restore...
+  Restored /Users/prudvi/Desktop/ui/media/MovieList/MovieList.csproj (in 336 ms).
+  MovieList -> /Users/prudvi/Desktop/ui/media/MovieList/bin/Debug/net6.0/MovieList.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:06.68
+MSBuild version 17.4.1+9a89d02ff for .NET
+  Determining projects to restore...
+  Restored /Users/prudvi/Desktop/ui/media/MovieList/MovieList.csproj (in 340 ms).
+  MovieList -> /Users/prudvi/Desktop/ui/media/MovieList/bin/Debug/net6.0/MovieList.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:06.47
+MSBuild version 17.4.1+9a89d02ff for .NET
+  Determining projects to restore...
+  Restored /Users/prudvi/Desktop/ui/media/MovieList/MovieList.csproj (in 333 ms).
+  MovieList -> /Users/prudvi/Desktop/ui/media/MovieList/bin/Debug/net6.0/MovieList.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:06.58
+MSBuild version 17.4.1+9a89d02ff for .NET
+  Determining projects to restore...
+  Restored /Users/prudvi/Desktop/ui/media/MovieList/MovieList.csproj (in 369 ms).
+  MovieList -> /Users/prudvi/Desktop/ui/media/MovieList/bin/Debug/net6.0/MovieList.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:06.90
+MSBuild version 17.4.1+9a89d02ff for .NET
+  Determining projects to restore...
+  Restored /Users/prudvi/Desktop/ui/media/MovieList/MovieList.csproj (in 374 ms).
+  MovieList -> /Users/prudvi/Desktop/ui/media/MovieList/bin/Debug/net6.0/MovieList.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:06.48
+MSBuild version 17.4.1+9a89d02ff for .NET
+  Determining projects to restore...
+  Restored /Users/prudvi/Desktop/ui/media/MovieList/MovieList.csproj (in 338 ms).
+  MovieList -> /Users/prudvi/Desktop/ui/media/MovieList/bin/Debug/net6.0/MovieList.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:06.60
+MSBuild version 17.4.1+9a89d02ff for .NET
+  Determining projects to restore...
+  Restored /Users/prudvi/Desktop/ui/media/MovieList/MovieList.csproj (in 334 ms).
+  MovieList -> /Users/prudvi/Desktop/ui/media/MovieList/bin/Debug/net6.0/MovieList.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:03.68
+MSBuild version 17.4.1+9a89d02ff for .NET
+  Determining projects to restore...
+  Restored /Users/prudvi/Desktop/ui/media/MovieList/MovieList.csproj (in 351 ms).
+  MovieList -> /Users/prudvi/Desktop/ui/media/MovieList/bin/Debug/net6.0/MovieList.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:06.13
+MSBuild version 17.4.1+9a89d02ff for .NET
+  Determining projects to restore...
+  Restored /Users/prudvi/Desktop/ui/media/MovieList/MovieList.csproj (in 371 ms).
+  MovieList -> /Users/prudvi/Desktop/ui/media/MovieList/bin/Debug/net6.0/MovieList.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:06.68
+MSBuild version 17.4.1+9a89d02ff for .NET
+  Determining projects to restore...
+  Restored /Users/prudvi/Desktop/ui/media/MovieList/MovieList.csproj (in 353 ms).
+  MovieList -> /Users/prudvi/Desktop/ui/media/MovieList/bin/Debug/net6.0/MovieList.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:06.31
+MSBuild version 17.4.1+9a89d02ff for .NET
+  Determining projects to restore...
+  Restored /Users/prudvi/Desktop/ui/media/MovieList/MovieList.csproj (in 335 ms).
+  MovieList -> /Users/prudvi/Desktop/ui/media/MovieList/bin/Debug/net6.0/MovieList.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:06.90
+MSBuild version 17.4.1+9a89d02ff for .NET
+  Determining projects to restore...
+  Restored /Users/prudvi/Desktop/ui/media/MovieList/MovieList.csproj (in 335 ms).
+  MovieList -> /Users/prudvi/Desktop/ui/media/MovieList/bin/Debug/net6.0/MovieList.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:03.91
+MSBuild version 17.4.1+9a89d02ff for .NET
+  Determining projects to restore...
+  Restored /Users/prudvi/Desktop/ui/media/MovieList/MovieList.csproj (in 362 ms).
+  MovieList -> /Users/prudvi/Desktop/ui/media/MovieList/bin/Debug/net6.0/MovieList.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:03.45
+MSBuild version 17.4.1+9a89d02ff for .NET
+  Determining projects to restore...
+  Restored /Users/prudvi/Desktop/ui/media/MovieList/MovieList.csproj (in 332 ms).
+  MovieList -> /Users/prudvi/Desktop/ui/media/MovieList/bin/Debug/net6.0/MovieList.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:03.11
+MSBuild version 17.4.1+9a89d02ff for .NET
+  Determining projects to restore...
+  Restored /Users/prudvi/Desktop/ui/media/MovieList/MovieList.csproj (in 337 ms).
+  MovieList -> /Users/prudvi/Desktop/ui/media/MovieList/bin/Debug/net6.0/MovieList.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:06.59
+MSBuild version 17.4.1+9a89d02ff for .NET
+  Determining projects to restore...
+  Restored /Users/prudvi/Desktop/ui/media/MovieList/MovieList.csproj (in 363 ms).
+  MovieList -> /Users/prudvi/Desktop/ui/media/MovieList/bin/Debug/net6.0/MovieList.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:03.76
+MSBuild version 17.4.1+9a89d02ff for .NET
+  Determining projects to restore...
+  Restored /Users/prudvi/Desktop/ui/media/MovieList/MovieList.csproj (in 349 ms).
+  MovieList -> /Users/prudvi/Desktop/ui/media/MovieList/bin/Debug/net6.0/MovieList.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:03.42
+MSBuild version 17.4.1+9a89d02ff for .NET
+  Determining projects to restore...
+  Restored /Users/prudvi/Desktop/ui/media/MovieList/MovieList.csproj (in 340 ms).
+  MovieList -> /Users/prudvi/Desktop/ui/media/MovieList/bin/Debug/net6.0/MovieList.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:03.00
+MSBuild version 17.4.1+9a89d02ff for .NET
+  Determining projects to restore...
+  Restored /Users/prudvi/Desktop/ui/media/MovieList/MovieList.csproj (in 368 ms).
+  MovieList -> /Users/prudvi/Desktop/ui/media/MovieList/bin/Debug/net6.0/MovieList.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:03.20
+MSBuild version 17.4.1+9a89d02ff for .NET
+  Determining projects to restore...
+  Restored /Users/prudvi/Desktop/ui/media/MovieList/MovieList.csproj (in 355 ms).
+  MovieList -> /Users/prudvi/Desktop/ui/media/MovieList/bin/Debug/net6.0/MovieList.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:02.98
+MSBuild version 17.4.1+9a89d02ff for .NET
+  Determining projects to restore...
+  Restored /Users/prudvi/Desktop/ui/media/MovieList/MovieList.csproj (in 356 ms).
+  MovieList -> /Users/prudvi/Desktop/ui/media/MovieList/bin/Debug/net6.0/MovieList.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:06.47
+MSBuild version 17.4.1+9a89d02ff for .NET
+  Determining projects to restore...
+  Restored /Users/prudvi/Desktop/ui/media/MovieList/MovieList.csproj (in 376 ms).
+  MovieList -> /Users/prudvi/Desktop/ui/media/MovieList/bin/Debug/net6.0/MovieList.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:03.80
+MSBuild version 17.4.1+9a89d02ff for .NET
+  Determining projects to restore...
+  Restored /Users/prudvi/Desktop/ui/media/RideApp/RideApp.csproj (in 500 ms).
+  RideApp -> /Users/prudvi/Desktop/ui/media/RideApp/bin/Debug/netcoreapp3.1/RideApp.dll
+  RideApp -> /Users/prudvi/Desktop/ui/media/RideApp/bin/Debug/netcoreapp3.1/RideApp.Views.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:04.85
+MSBuild version 17.4.1+9a89d02ff for .NET
+  Determining projects to restore...
+  Restored /Users/prudvi/Desktop/ui/media/InventoryApp/InventoryApp.csproj (in 150 ms).
+  InventoryApp -> /Users/prudvi/Desktop/ui/media/InventoryApp/bin/Debug/netcoreapp3.1/InventoryApp.dll
+  InventoryApp -> /Users/prudvi/Desktop/ui/media/InventoryApp/bin/Debug/netcoreapp3.1/InventoryApp.Views.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:02.58
+MSBuild version 17.4.1+9a89d02ff for .NET
+  Determining projects to restore...
+  Restored /Users/prudvi/Desktop/ui/media/RideApp/RideApp.csproj (in 491 ms).
+  RideApp -> /Users/prudvi/Desktop/ui/media/RideApp/bin/Debug/netcoreapp3.1/RideApp.dll
+  RideApp -> /Users/prudvi/Desktop/ui/media/RideApp/bin/Debug/netcoreapp3.1/RideApp.Views.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:02.95
+MSBuild version 17.4.1+9a89d02ff for .NET
+  Determining projects to restore...
+  Restored /Users/prudvi/Desktop/ui/media/MovieList/MovieList.csproj (in 345 ms).
+  MovieList -> /Users/prudvi/Desktop/ui/media/MovieList/bin/Debug/net6.0/MovieList.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:03.11
+MSBuild version 17.4.1+9a89d02ff for .NET
+  Determining projects to restore...
+  Restored /Users/prudvi/Desktop/ui/media/RideApp/RideApp.csproj (in 493 ms).
+  RideApp -> /Users/prudvi/Desktop/ui/media/RideApp/bin/Debug/netcoreapp3.1/RideApp.dll
+  RideApp -> /Users/prudvi/Desktop/ui/media/RideApp/bin/Debug/netcoreapp3.1/RideApp.Views.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:02.93

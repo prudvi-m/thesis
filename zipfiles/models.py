@@ -40,6 +40,13 @@ class File_Results(models.Model):
   folder_name = models.CharField(max_length=50,null=True)
   instruction_passed = models.CharField(max_length=50,null=True)
 
+
+  def update_attributes(self, new_attributes):
+    for attr, value in new_attributes.items():
+        setattr(self, attr, value)
+    self.save()
+
+
   def __str__(self):
     return f'files: {self.user_name} {self.db_name}'
 

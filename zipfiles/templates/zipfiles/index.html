@@ -3,10 +3,10 @@
 {% block body %}
 <h3 class="m-4">All Zipfiles</h3>
 
-<form action="{% url 'automate' %}" method="GET">
+{% comment %} <form action="{% url 'automate' %}" method="GET">
   {% csrf_token %}
   <button id="myButton" type="submit" class="btn btn-primary m-3">Run Automation</button>
-</form>
+</form> {% endcomment %}
 
 <div class="row">
   <div class="col-12">
@@ -24,7 +24,7 @@
               <th scope="col">Build</th>
               <th scope="col">Assignment</th>
               <th scope="col">Version</th>
-              <th scope="col">Instruction</th>
+              {% comment %} <th scope="col">Instruction</th> {% endcomment %}
               <th scope="col">Actions</th>
             </tr>
           </thead>
@@ -39,7 +39,7 @@
                 <td>{{ zipfile.is_build_succeeded|default:"" }}</td>
                 <td>{{ zipfile.assignment_number|default:"" }}</td>
                 <td>{{ zipfile.dotnet_version|default:"" }}</td>
-                <td>{{ zipfile.instruction_passed|default:"" }}</td>
+                {% comment %} <td>{{ zipfile.instruction_passed|default:"" }}</td> {% endcomment %}
                 <td>
 
                   <button type="button" class="btn btn-success me-1" href="{% url 'view_student' zipfile.id %}" data-bs-toggle="modal" data-bs-target="#myModal{{zipfile.id}}">
@@ -81,6 +81,10 @@
                     <i class="fa-solid fa-pen-to-square fa-lg"></i>
                   </a>
 
+                  <a class="btn btn-info me-1" href="{% url 'automate' zipfile.id %}">
+                    <i class="fa-solid fa-robot fa-lg"></i>
+                  </a>
+                  
                   <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete{{zipfile.id}}">
                     <i class="fa-solid fa-trash-can fa-lg"></i>
                   </button>

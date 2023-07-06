@@ -106,7 +106,18 @@
     <script>
       $(document).ready(function() {
         $('body').on('submit', 'form', function() {
-          var $parentDiv = $('#parentDiv');
+          apply_loading()
+          $(this).find('button[type="submit"]').prop('disabled', true);
+        });
+
+        $('body').on('click', 'a', function() {
+          apply_loading()
+        });
+      });
+
+
+      function apply_loading() {
+        var $parentDiv = $('#parentDiv');
           var $loadingOverlay = $('<div id="loading-overlay">');
           var $loadingContainer = $('<div id="loading-container">');
           var $loadingSpinner = $('<span class="loading-spinner">');
@@ -125,8 +136,7 @@
     
           // Disable the submit button to prevent multiple submissions
           $(this).find('button[type="submit"]').prop('disabled', true);
-        });
-      });
+      }
     </script>
   </body>
 </html>

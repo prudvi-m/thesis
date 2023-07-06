@@ -22,25 +22,22 @@ def extract_zip(zip_file):
         extracted_folder = os.path.dirname(first_item.filename)
         zip_ref.extractall(extract_path)
     delete_mac_extract_folders()
-    print(f"\n ** Zip file '{zip_file}' extracted to: '{extract_path}'.")
-    print(f"\n ** Zip file '{zip_file}' extracted folder: '{extracted_folder}'.")
     return extracted_folder
 
 def delete_mac_extract_folders():
     for entry in os.listdir(extract_path):
         folder_path = os.path.join(extract_path, entry)
         if os.path.isdir(folder_path) and entry == "__MACOSX":
-            print("Deleting folder:", '__MACOSX')
             # Use shutil.rmtree() to delete the entire folder and its contents
             shutil.rmtree(folder_path)
 
 
 def delete_extracted_folders():
-    c_path = os.getcwd()
-    for item in os.listdir(c_path):
-        item_path = os.path.join(c_path, item)
+    print(f"\n* extract_path : {extract_path}")
+    for item in os.listdir(extract_path):
+        item_path = os.path.join(extract_path, item)
         # Check if the item is a folder and its name matches any zip file name
-        if os.path.isdir(item_path) and item + ".zip" in os.listdir(c_path):
+        if os.path.isdir(item_path) and item + ".zip" in os.listdir(extract_path):
             print("Folder to be deleted:", item)
             # Delete the folder
             shutil.rmtree(item_path)
@@ -49,7 +46,8 @@ def delete_extracted_folders():
 #region 2.Build
 def execute_dotnet_build(project_path):
     cmd = ['dotnet','build']
-    cwd = os.getcwd() + f'/{project_path}/'
+    cwd = extract_path + f'/{project_path}/'
+    print(f"\ncwd : {cwd}")
     try:
         output = subprocess.Popen(cmd, stdout=subprocess.PIPE,cwd=cwd).communicate()[0]
     except Exception as error:
@@ -129,7 +127,8 @@ def get_database_name(connection_string, pattern = r"Database=(.*?);"):
 #region 5.Dotnet Version 
 def get_version(project_path):
     # Read and parse the .csproj file
-    tree = ET.parse(f"{project_path}/{project_path}.csproj")
+    print(f"\nversion path : {project_path}/{project_path}.csproj")
+    tree = ET.parse(f"{extract_path}/{project_path}/{project_path}.csproj")
     root = tree.getroot()
     dotnet_version = ''
     # Find the TargetFramework element
@@ -155,7 +154,7 @@ def get_file_data(folder_name):
     build = execute_dotnet_build(folder_name)
     database = get_database(folder_name)
     version = get_version(folder_name)
-    result[folder_name] = { 
+    result = { 
         "folder_name" : folder_name,
         "build" : build, 
         "db_name" : database["db_name"],
@@ -163,7 +162,7 @@ def get_file_data(folder_name):
         "version" : version
     }
     print("\n******************************************\n")
-    print(result)
+    print(result,"\n\n")
     return result
 
 #endregion
@@ -171,5 +170,5 @@ def get_file_data(folder_name):
 if __name__ == "__main__":
     os.chdir(extract_path)
     print()
-    # Sample Usage
+    #Sample
     apply_automate_script('anusha.zip')

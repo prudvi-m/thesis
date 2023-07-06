@@ -4,32 +4,15 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from .models import File_Results, UserNamesList
 from .forms import FileForm, UserNamesListForm
-from automate import delete_extracted_and_run
+from automate import apply_automate_script
 from .util import extract_username_and_assignment
+import traceback
+
 
 # Create your views here.
 
 #region Files Crud
 def index(request):
-  return render(request, 'zipfiles/index.html', {
-    'zipfiles': File_Results.objects.all()
-  })
-
-def automate(request):
-  result = delete_extracted_and_run()
-
-  # Convert JSON data to a string
-  # json_string = json.dumps(result)
-  print(json.dumps(result))
-  
-  files = File_Results.objects.all()
-  files_len = len(files)
-  result_len = len(result)
-  r = min([files_len,result_len])
-  for i in range(r):
-    pass
-
-
   return render(request, 'zipfiles/index.html', {
     'zipfiles': File_Results.objects.all()
   })
@@ -85,6 +68,48 @@ def edit(request, id):
     'form': form
   })
 
+def automate(request, id):
+  # if request.method == 'GET':
+  #   zipfile = File_Results.objects.get(pk=id)
+  #   data = apply_automate_script(zipfile.f_name)
+
+  #   try:
+  #     # Save the changes
+  #     zipfile.update_attributes(
+  #        {"db_name" : data.get('db_name'),
+  #         "db_type" : data.get('db_type'),
+  #         "dotnet_version" : data.get('version'),
+  #         "folder_name" : data.get('folder_name'),
+  #         "is_build_succeeded" : data.get('build'),
+  #         })
+  #   except Exception as e:
+  #     traceback.print_exc()
+  #     print(f"An exception occurred while saving the zipfile record: {str(e)}")
+    
+  #   return render(request, 'zipfiles/index.html', {
+  #     'zipfiles': File_Results.objects.all()
+  #   })
+
+  if request.method == 'GET':
+    # Retrieve the File_Results instance
+    zipfile = get_object_or_404(File_Results, pk=id)
+    
+    # Apply automation script and retrieve the data
+    data = apply_automate_script(zipfile.f_name)
+
+    # Update the attributes based on the data
+    zipfile.db_name = data.get('db_name')
+    zipfile.db_type = data.get('db_type')
+    zipfile.dotnet_version = data.get('version')
+    zipfile.folder_name = data.get('folder_name')
+    zipfile.is_build_succeeded = data.get('build')
+
+    # Save the changes
+    zipfile.save()
+    
+    return render(request, 'zipfiles/index.html', {
+        'zipfiles': File_Results.objects.all()
+    })
 
 def delete(request, id):
   if request.method == 'POST':
