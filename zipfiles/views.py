@@ -50,7 +50,6 @@ def add(request):
     'form': FileForm()
   })
 
-
 def edit(request, id):
   if request.method == 'POST':
     zipfile = File_Results.objects.get(pk=id)
@@ -69,27 +68,6 @@ def edit(request, id):
   })
 
 def automate(request, id):
-  # if request.method == 'GET':
-  #   zipfile = File_Results.objects.get(pk=id)
-  #   data = apply_automate_script(zipfile.f_name)
-
-  #   try:
-  #     # Save the changes
-  #     zipfile.update_attributes(
-  #        {"db_name" : data.get('db_name'),
-  #         "db_type" : data.get('db_type'),
-  #         "dotnet_version" : data.get('version'),
-  #         "folder_name" : data.get('folder_name'),
-  #         "is_build_succeeded" : data.get('build'),
-  #         })
-  #   except Exception as e:
-  #     traceback.print_exc()
-  #     print(f"An exception occurred while saving the zipfile record: {str(e)}")
-    
-  #   return render(request, 'zipfiles/index.html', {
-  #     'zipfiles': File_Results.objects.all()
-  #   })
-
   if request.method == 'GET':
     # Retrieve the File_Results instance
     zipfile = get_object_or_404(File_Results, pk=id)
@@ -150,7 +128,6 @@ def user_create(request):
                 UserNamesList.objects.create(user_name=user_name.strip(), email=f'{user_name.strip()}@student.govst.edu')
             # return redirect('zipfiles/user_list')
             return redirect('user_list')
-
     else:
         form = UserNamesListForm()
 
