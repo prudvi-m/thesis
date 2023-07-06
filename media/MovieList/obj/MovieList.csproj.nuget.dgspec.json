@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/prudvi/Desktop/MovieList/MovieList.csproj": {}
+    "/Users/prudvi/Desktop/ui/media/MovieList/MovieList.csproj": {}
   },
   "projects": {
-    "/Users/prudvi/Desktop/MovieList/MovieList.csproj": {
+    "/Users/prudvi/Desktop/ui/media/MovieList/MovieList.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/prudvi/Desktop/MovieList/MovieList.csproj",
+        "projectUniqueName": "/Users/prudvi/Desktop/ui/media/MovieList/MovieList.csproj",
         "projectName": "MovieList",
-        "projectPath": "/Users/prudvi/Desktop/MovieList/MovieList.csproj",
+        "projectPath": "/Users/prudvi/Desktop/ui/media/MovieList/MovieList.csproj",
         "packagesPath": "/Users/prudvi/.nuget/packages/",
-        "outputPath": "/Users/prudvi/Desktop/MovieList/obj/",
+        "outputPath": "/Users/prudvi/Desktop/ui/media/MovieList/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/prudvi/.nuget/NuGet/NuGet.Config"

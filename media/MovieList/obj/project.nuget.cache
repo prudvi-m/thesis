@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "CtHBFUuyGn5hLq0UhaNwD6069X3rF4W6EzYf+1YGGkLaYfce2dw/64JGkvMLjpPE021CQpQaLUVfetZhz/Dhtw==",
+  "dgSpecHash": "rwkGWp2v3vGlcNfGOxn2MUsHSN6cGsVl/2BYoXVAhZzzT18lanhn3sawUljz6g2KoB0rSU7/fHDFLffamtYXkw==",
   "success": true,
-  "projectFilePath": "/Users/prudvi/Desktop/MovieList/MovieList.csproj",
+  "projectFilePath": "/Users/prudvi/Desktop/ui/media/MovieList/MovieList.csproj",
   "expectedPackageFiles": [
     "/Users/prudvi/.nuget/packages/humanizer.core/2.8.26/humanizer.core.2.8.26.nupkg.sha512",
     "/Users/prudvi/.nuget/packages/microsoft.data.sqlite.core/6.0.5/microsoft.data.sqlite.core.6.0.5.nupkg.sha512",
