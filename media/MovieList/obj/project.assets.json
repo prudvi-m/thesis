@@ -1258,11 +1258,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/prudvi/Desktop/ui/media/MovieList/MovieList.csproj",
+      "projectUniqueName": "/Users/prudvi/Desktop/MovieList/MovieList.csproj",
       "projectName": "MovieList",
-      "projectPath": "/Users/prudvi/Desktop/ui/media/MovieList/MovieList.csproj",
+      "projectPath": "/Users/prudvi/Desktop/MovieList/MovieList.csproj",
       "packagesPath": "/Users/prudvi/.nuget/packages/",
-      "outputPath": "/Users/prudvi/Desktop/ui/media/MovieList/obj/",
+      "outputPath": "/Users/prudvi/Desktop/MovieList/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/prudvi/.nuget/NuGet/NuGet.Config"

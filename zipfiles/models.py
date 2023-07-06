@@ -37,6 +37,7 @@ class File_Results(models.Model):
   is_build_succeeded = models.CharField(max_length=50,null=True)
   dotnet_version = models.CharField(max_length=20,null=True)
   assignment_number = models.IntegerField(null=True)
+  folder_name = models.CharField(max_length=50,null=True)
   instruction_passed = models.CharField(max_length=50,null=True)
 
   def __str__(self):

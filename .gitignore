@@ -8,7 +8,7 @@ __pycache__
 __pycache__/
 thesis_ui/__pycache__/*
 zipfiles/__pycache__/*
-# media
+media
 *.cpython*
 # Backup files # 
 *.bak 

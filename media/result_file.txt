@@ -30,3 +30,35 @@ Build succeeded.
     0 Error(s)
 
 Time Elapsed 00:00:04.43
+MSBuild version 17.4.1+9a89d02ff for .NET
+  Determining projects to restore...
+  Restored /Users/prudvi/Desktop/ui/media/RideApp/RideApp.csproj (in 546 ms).
+  RideApp -> /Users/prudvi/Desktop/ui/media/RideApp/bin/Debug/netcoreapp3.1/RideApp.dll
+  RideApp -> /Users/prudvi/Desktop/ui/media/RideApp/bin/Debug/netcoreapp3.1/RideApp.Views.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:07.20
+MSBuild version 17.4.1+9a89d02ff for .NET
+  Determining projects to restore...
+  Restored /Users/prudvi/Desktop/ui/media/InventoryApp/InventoryApp.csproj (in 158 ms).
+  InventoryApp -> /Users/prudvi/Desktop/ui/media/InventoryApp/bin/Debug/netcoreapp3.1/InventoryApp.dll
+  InventoryApp -> /Users/prudvi/Desktop/ui/media/InventoryApp/bin/Debug/netcoreapp3.1/InventoryApp.Views.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:02.68
+MSBuild version 17.4.1+9a89d02ff for .NET
+  Determining projects to restore...
+  Restored /Users/prudvi/Desktop/ui/media/MovieList/MovieList.csproj (in 378 ms).
+  MovieList -> /Users/prudvi/Desktop/ui/media/MovieList/bin/Debug/net6.0/MovieList.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:04.74

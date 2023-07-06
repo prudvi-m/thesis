@@ -30,16 +30,41 @@ def extract_zip():
                 print(f"Skipping {item} as the folder already exists.\n")
                 continue
             
+            print("\n *file_name: ",file_name)
+            print("\n")
             zip_ref = zipfile.ZipFile(file_name) # create zipfile object
             zip_ref.extractall(extract_path) # extract file to dir
             zip_ref.close() # close file
 
+    delete_mac_extract_folders()
+
+def delete_mac_extract_folders():
     for entry in os.listdir(extract_path):
         folder_path = os.path.join(extract_path, entry)
         if os.path.isdir(folder_path) and entry == "__MACOSX":
             print("Deleting folder:", '__MACOSX')
             # Use shutil.rmtree() to delete the entire folder and its contents
             shutil.rmtree(folder_path)
+
+
+def delete_and_extract_zip(zip_file):
+    delete_extracted_folders()
+    # with zipfile.ZipFile(zip_file, 'r') as zip_ref:
+    #     extracted_folder = zip_ref.namelist()[0]
+    #     zip_ref.extractall(extract_path)
+    # delete_mac_extract_folders()
+    # print(f"\nZip file '{zip_file}' extracted to '{extract_path}'.")
+    # return extracted_folder
+    extracted_folder = None
+    with zipfile.ZipFile(zip_file, 'r') as zip_ref:
+        first_item = zip_ref.infolist()[0]
+        extracted_folder = os.path.dirname(first_item.filename)
+        zip_ref.extractall(extract_path)
+    print(f"Zip file '{zip_file}' extracted to '{extract_path}'.")
+    print(f"Zip file '{zip_file}' extracted '{extracted_folder}'.")
+    return extracted_folder
+
+    
 
 def delete_extracted_folders():
     # os.chdir(extract_path)
@@ -195,9 +220,28 @@ def delete_extracted_and_run():
     extract_zip()
     return loop_zip_data()
 
+def get_file_data(zip_file_name):
+    results = {}
+    worked = []
+    build = execute_dotnet_build(zip_file_name)
+    if build:
+        worked.append(zip_file_name);
+    database = get_database(zip_file_name)
+    version = get_version(zip_file_name)
+    results[zip_file_name] = {"build" : build, "db_name" : database["db_name"], "db_type" : database["db_type"], "version" : version}
+    print(f"{zip_file_name}:\n")
+    print(f" Build:    {'Build succeeded.' if build else 'failed.'}\n")
+    print(f" DB Type:  {database['db_type']}\n")
+    print(f" DB Name:  {database['db_name']}\n")    
+    # print(f" Database Name: {database["database_name"] or ''}")
+    print(f" Version:  {version}\n");
+    print("\n******************************************\n")
+    return results
+
 if __name__ == "__main__":
     os.chdir(extract_path)
     print()
-    delete_extracted_folders()
+    # delete_extracted_folders()
     # extract_zip()
+    delete_and_extract_zip('/Users/prudvi/Desktop/ui/media/anusha.zip')
     # loop_zip_data()
