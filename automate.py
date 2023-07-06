@@ -144,13 +144,13 @@ def get_version(project_path):
 
 #region 6.Apply Script
 
-def get_file_data(zip_file):
+def apply_automate_script(zip_file):
     zip_file = f"{extract_path}/{zip_file}"
     delete_extracted_folders()
     folder_name = extract_zip(zip_file)
-    return apply_automate_script(folder_name)
+    return get_file_data(folder_name)
 
-def apply_automate_script(folder_name):
+def get_file_data(folder_name):
     result = {}
     build = execute_dotnet_build(folder_name)
     database = get_database(folder_name)
@@ -158,7 +158,7 @@ def apply_automate_script(folder_name):
     result[folder_name] = { 
         "folder_name" : folder_name,
         "build" : build, 
-        "db_name" : database["db_name"], 
+        "db_name" : database["db_name"],
         "db_type" : database["db_type"], 
         "version" : version
     }
@@ -168,8 +168,8 @@ def apply_automate_script(folder_name):
 
 #endregion
 
-
 if __name__ == "__main__":
     os.chdir(extract_path)
     print()
-    get_file_data('anusha.zip')
+    # Sample Usage
+    apply_automate_script('anusha.zip')
