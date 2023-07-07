@@ -56,14 +56,14 @@ def execute_dotnet_build(project_path):
         # Print the error information
         print("Error Type:", error_type)
         print("Error Message:", error_message)
-        return
+        return False
 
     content = str(output).replace('b\'','').replace('\'','').replace('\\n','\n')
     # Save the build results to the given file
     write_results(content)
-    if content:
-        if re.search('Build succeeded.',content):
-            return True
+    print(f"\n\n{content}\n\n")
+    if content and re.search('Build succeeded.',content):
+        return True
     return False
 
 #endregion
@@ -170,5 +170,7 @@ def get_file_data(folder_name):
 if __name__ == "__main__":
     os.chdir(extract_path)
     print()
+    get_file_data('MovieList')
     #Sample
-    apply_automate_script('anusha.zip')
+    # apply_automate_script('anusha.zip')
+
