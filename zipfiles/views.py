@@ -118,8 +118,8 @@ def dashboard(request):
     database_values = [item['count'] for item in database_counts]
 
     # Count the occurrences of build statuses
-    build_failed_count = build_data.filter(is_build_succeeded='True').count()
-    build_succeeded_count = build_data.filter(is_build_succeeded='False').count()
+    build_failed_count = build_data.filter(is_build_succeeded='False').count()
+    build_succeeded_count = build_data.filter(is_build_succeeded='True').count()
 
     # Prepare the data for the template
     dotnet_chart_data = {
