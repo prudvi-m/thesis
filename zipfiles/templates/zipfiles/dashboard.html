@@ -54,7 +54,7 @@
         <canvas id="dotnetChart"></canvas>
       </div>
       <ul class="list-group">
-        {% for dotnet, value in dotnet_chart_data.items %}
+        {% for dotnet, value in dotnet_list_group_data.items %}
           <li class="list-group-item">{{ dotnet }}: <span>{{ value }}</span></li>
         {% endfor %}
       </ul>
@@ -66,7 +66,7 @@
         <canvas id="databaseChart"></canvas>
       </div>
       <ul class="list-group">
-        {% for database, value in database_chart_data.items %}
+        {% for database, value in database_list_group_data.items %}
           <li class="list-group-item">{{ database }}: <span>{{ value }}</span></li>
         {% endfor %}
       </ul>
@@ -78,7 +78,7 @@
         <canvas id="buildChart"></canvas>
       </div>
       <ul class="list-group">
-        {% for label, value in build_chart_data.items %}
+        {% for label, value in build_list_group_data.items %}
           <li class="list-group-item">{{ label }}: <span>{{ value }}</span></li>
         {% endfor %}
       </ul>

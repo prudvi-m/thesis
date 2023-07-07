@@ -118,8 +118,8 @@ def dashboard(request):
     database_values = [item['count'] for item in database_counts]
 
     # Count the occurrences of build statuses
-    build_failed_count = build_data.filter(is_build_succeeded='Failed').count()
-    build_succeeded_count = build_data.filter(is_build_succeeded='Succeeded').count()
+    build_failed_count = build_data.filter(is_build_succeeded='True').count()
+    build_succeeded_count = build_data.filter(is_build_succeeded='False').count()
 
     # Prepare the data for the template
     dotnet_chart_data = {
@@ -146,12 +146,24 @@ def dashboard(request):
         }]
     }
 
+    dotnet_list_group_data = {item['dotnet_version']: item['count'] for item in dotnet_counts}
+
+    database_list_group_data = {item['db_type']: item['count'] for item in database_counts}
+
+    build_list_group_data = {'Build Failed': build_failed_count, 'Build Succeeded': build_succeeded_count}
+
     # Pass the data to the template
     context = {
         'dotnet_chart_data': dotnet_chart_data,
         'database_chart_data': database_chart_data,
         'build_chart_data': build_chart_data,
+        'dotnet_list_group_data' : dotnet_list_group_data,
+        'database_list_group_data': database_list_group_data,
+        'build_list_group_data' : build_list_group_data
     }
+
+
+    print("\n\nContext:\n\n   *****\n\n", context,"\n\n***** \n\n")
 
     return render(request, 'zipfiles/dashboard.html', context)
 

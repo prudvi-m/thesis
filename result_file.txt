@@ -377,3 +377,14 @@ Build succeeded.
     0 Error(s)
 
 Time Elapsed 00:00:06.70
+MSBuild version 17.4.1+9a89d02ff for .NET
+  Determining projects to restore...
+  Restored /Users/prudvi/Desktop/ui/media/RideApp/RideApp.csproj (in 524 ms).
+  RideApp -> /Users/prudvi/Desktop/ui/media/RideApp/bin/Debug/netcoreapp3.1/RideApp.dll
+  RideApp -> /Users/prudvi/Desktop/ui/media/RideApp/bin/Debug/netcoreapp3.1/RideApp.Views.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:07.07
