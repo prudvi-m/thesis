@@ -33,18 +33,20 @@ for match in error_matches:
     filename, line_number, error_code, error_message = match
     error = f"{filename} - {line_number} - {error_code} - {error_message}"
     if error not in unique_errors:
-        print("Error:")
-        print(f"File: {filename}")
-        print(f"Line number: {line_number}")
-        print(f"Error Message: {error_message}")
-        print(f"Error Code: {error_code}")
-        print()
+        error_details.append(
+            f"File: {filename}\nLine number: {line_number}\nMessage: {error_message}\nCode: {error_code}"
+        )
         unique_errors.add(error)
         error_count += 1
 
 # Check if "Build FAILED" line is present
 if "Build FAILED" in build_output:
-    print("Build FAILED.")
+    error_details.append("Build FAILED.")
 
-print(f"Total Errors: {error_count}")
+error_details.append(f"Total Errors: {error_count}\n")
 
+# Create a single multiline string
+multiline_string = "\n\n".join(error_details)
+
+print(multiline_string)
+# print(f"\nTotal Errors: {error_count}")

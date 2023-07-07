@@ -36,7 +36,7 @@ class File_Results(models.Model):
   db_type = models.CharField(max_length=50,null=True)
   is_build_succeeded = models.CharField(max_length=50,null=True)
   dotnet_version = models.CharField(max_length=20,null=True)
-  details = models.TextField(null=True)
+  error_details = models.TextField(null=True)
   assignment_number = models.IntegerField(null=True)
   folder_name = models.CharField(max_length=50,null=True)
   instruction_passed = models.CharField(max_length=50,null=True)

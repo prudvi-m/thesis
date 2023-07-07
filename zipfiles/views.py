@@ -15,7 +15,7 @@ def index(request):
     'zipfiles': File_Results.objects.all()
   })
 
-def view_student(request, id):
+def view_info(request, id):
   return HttpResponseRedirect(reverse('index'))
 
 def add(request):
@@ -93,6 +93,7 @@ def automate(request, id):
     zipfile.dotnet_version = data.get('version')
     zipfile.folder_name = data.get('folder_name')
     zipfile.is_build_succeeded = data.get('build')
+    zipfile.error_details = data.get('error_details')
 
     # Save the changes
     zipfile.save()

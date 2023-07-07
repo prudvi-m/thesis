@@ -88,3 +88,38 @@ Build succeeded.
     0 Error(s)
 
 Time Elapsed 00:00:07.39
+MSBuild version 17.4.1+9a89d02ff for .NET
+  Determining projects to restore...
+  Restored /Users/prudvi/Desktop/ui/media/MovieList/MovieList.csproj (in 363 ms).
+  MovieList -> /Users/prudvi/Desktop/ui/media/MovieList/bin/Debug/net6.0/MovieList.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:06.60
+MSBuild version 17.4.1+9a89d02ff for .NET
+  Determining projects to restore...
+  Restored /Users/prudvi/Desktop/ui/media/MovieList/MovieList.csproj (in 343 ms).
+  MovieList -> /Users/prudvi/Desktop/ui/media/MovieList/bin/Debug/net6.0/MovieList.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:03.67
+b"MSBuild version 17.4.1+9a89d02ff for .NET
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+/Users/prudvi/Desktop/ui/media/MovieList/Controllers/MovieController.cs(35,18): error CS1002: ; expected [/Users/prudvi/Desktop/ui/media/MovieList/MovieList.csproj]
+/Users/prudvi/Desktop/ui/media/MovieList/Controllers/HomeController.cs(10,9): error CS1585: Member modifier private must precede the member type and name [/Users/prudvi/Desktop/ui/media/MovieList/MovieList.csproj]
+
+Build FAILED.
+
+/Users/prudvi/Desktop/ui/media/MovieList/Controllers/MovieController.cs(35,18): error CS1002: ; expected [/Users/prudvi/Desktop/ui/media/MovieList/MovieList.csproj]
+/Users/prudvi/Desktop/ui/media/MovieList/Controllers/HomeController.cs(10,9): error CS1585: Member modifier private must precede the member type and name [/Users/prudvi/Desktop/ui/media/MovieList/MovieList.csproj]
+    0 Warning(s)
+    2 Error(s)
+
+Time Elapsed 00:00:01.64
+"

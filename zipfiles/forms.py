@@ -6,13 +6,24 @@ from django.core.validators import MinLengthValidator
 class FileForm(forms.ModelForm):
   class Meta:
     model = File_Results
-    fields = ['id_number', 'user_name', 'db_name', 'is_build_succeeded', 'dotnet_version']
+
+    fields = ['id_number','f_name','f_size','myfiles','user_name'
+            ,'db_name','db_type','is_build_succeeded','dotnet_version'
+            ,'error_details','assignment_number','folder_name','instruction_passed',]
     labels = {
-      'id_number': 'Id Number',
-      'user_name': 'User Name',
-      'db_name': 'Database Name',
-      'is_build_succeeded': 'Is Build Succeeded',
-      'dotnet_version': 'Dotner version'
+      'id_number' : 'id_number',
+      'f_name' : 'f_name',
+      'f_size' : 'f_size',
+      'myfiles' : 'myfiles',
+      'user_name' : 'user_name',
+      'db_name' : 'db_name',
+      'db_type' : 'db_type',
+      'is_build_succeeded' : 'is_build_succeeded',
+      'dotnet_version' : 'dotnet_version',
+      'error_details' : 'error_details',
+      'assignment_number' : 'assignment_number',
+      'folder_name' : 'folder_name',
+      'instruction_passed' : 'instruction_passed',
     }
     widgets = {
       'id_number': forms.NumberInput(attrs={'class': 'form-control'}),
