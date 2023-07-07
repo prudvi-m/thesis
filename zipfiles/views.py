@@ -51,21 +51,35 @@ def add(request):
   })
 
 def edit(request, id):
-  if request.method == 'POST':
-    zipfile = File_Results.objects.get(pk=id)
-    form = FileForm(request.POST, instance=zipfile)
-    if form.is_valid():
-      form.save()
-      return render(request, 'zipfiles/edit.html', {
-        'form': form,
-        'success': True
-      })
-  else:
-    zipfile = File_Results.objects.get(pk=id)
-    form = FileForm(instance=zipfile)
-  return render(request, 'zipfiles/edit.html', {
-    'form': form
-  })
+  if not request.method == 'POST':
+    return render(request, 'zipfiles/edit.html', {
+      'id': id
+    })
+  zipfile = File_Results.objects.get(pk=id)
+  myfile = request.FILES.getlist("uploadfoles")
+  for f in myfile:
+      # user_name, assignment_number = extract_username_and_assignment(f.name)
+      fileSize = float(format(f.size / 1024, f".1f"))
+      if fileSize >= 1024:
+        fileSize = f'{format((fileSize / 1024), f".1f")}MB'
+      else:
+        fileSize = f'{fileSize}KB'
+      data = {
+        "f_name" : f.name,
+        "f_size" : fileSize,
+        "myfiles" : f,
+        "user_name" : None,
+        "db_name" : None,
+        "db_type" : None,
+        "is_build_succeeded" : None,
+        "dotnet_version" : None,
+        "assignment_number" : None,
+        "folder_name" : None,
+        "instruction_passed" : None,
+      }
+      zipfile.update_attributes(data)
+  return HttpResponseRedirect(reverse('index'))
+        
 
 def automate(request, id):
   if request.method == 'GET':
@@ -103,17 +117,16 @@ def files(request):
 
 def send_files(request):
     if request.method == "POST" :
-        
-        myfile = request.FILES.getlist("uploadfoles")
-        for f in myfile:
-            user_name, assignment_number = extract_username_and_assignment(f.name)
-            fileSize = float(format(f.size / 1024, f".1f"))
-            if fileSize >= 1024:
-              fileSize = f'{format((fileSize / 1024), f".1f")}MB'
-            else:
-              fileSize = f'{fileSize}KB'
-            File_Results(f_name=f.name,myfiles=f,f_size=fileSize, user_name = user_name, assignment_number = assignment_number).save()
-        return HttpResponseRedirect(reverse('index'))
+      myfile = request.FILES.getlist("uploadfoles")
+      for f in myfile:
+          user_name, assignment_number = extract_username_and_assignment(f.name)
+          fileSize = float(format(f.size / 1024, f".1f"))
+          if fileSize >= 1024:
+            fileSize = f'{format((fileSize / 1024), f".1f")}MB'
+          else:
+            fileSize = f'{fileSize}KB'
+          File_Results(f_name=f.name,myfiles=f,f_size=fileSize, user_name = user_name, assignment_number = assignment_number).save()
+      return HttpResponseRedirect(reverse('index'))
 
 #endregion 
 

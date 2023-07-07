@@ -301,4 +301,69 @@ Build FAILED.
     4 Error(s)
 
 Time Elapsed 00:00:02.21
-"
+"MSBuild version 17.4.1+9a89d02ff for .NET
+  Determining projects to restore...
+  Restored /Users/prudvi/Desktop/ui/media/MovieList/MovieList.csproj (in 371 ms).
+  MovieList -> /Users/prudvi/Desktop/ui/media/MovieList/bin/Debug/net6.0/MovieList.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:06.89
+b"MSBuild version 17.4.1+9a89d02ff for .NET
+  Determining projects to restore...
+  Restored /Users/prudvi/Desktop/ui/media/InventoryApp/InventoryApp.csproj (in 145 ms).
+/Users/prudvi/Desktop/ui/media/InventoryApp/Controllers/HomeController.cs(6,26): error CS8400: Feature top-level statements is not available in C# 8.0. Please use language version 9.0 or greater. [/Users/prudvi/Desktop/ui/media/InventoryApp/InventoryApp.csproj]
+/Users/prudvi/Desktop/ui/media/InventoryApp/Controllers/HomeController.cs(6,27): error CS0116: A namespace cannot directly contain members such as fields, methods or statements [/Users/prudvi/Desktop/ui/media/InventoryApp/InventoryApp.csproj]
+/Users/prudvi/Desktop/ui/media/InventoryApp/Controllers/HomeController.cs(7,1): error CS1529: A using clause must precede all other elements defined in the namespace except extern alias declarations [/Users/prudvi/Desktop/ui/media/InventoryApp/InventoryApp.csproj]
+/Users/prudvi/Desktop/ui/media/InventoryApp/Controllers/HomeController.cs(8,1): error CS1529: A using clause must precede all other elements defined in the namespace except extern alias declarations [/Users/prudvi/Desktop/ui/media/InventoryApp/InventoryApp.csproj]
+
+Build FAILED.
+
+/Users/prudvi/Desktop/ui/media/InventoryApp/Controllers/HomeController.cs(6,26): error CS8400: Feature top-level statements is not available in C# 8.0. Please use language version 9.0 or greater. [/Users/prudvi/Desktop/ui/media/InventoryApp/InventoryApp.csproj]
+/Users/prudvi/Desktop/ui/media/InventoryApp/Controllers/HomeController.cs(6,27): error CS0116: A namespace cannot directly contain members such as fields, methods or statements [/Users/prudvi/Desktop/ui/media/InventoryApp/InventoryApp.csproj]
+/Users/prudvi/Desktop/ui/media/InventoryApp/Controllers/HomeController.cs(7,1): error CS1529: A using clause must precede all other elements defined in the namespace except extern alias declarations [/Users/prudvi/Desktop/ui/media/InventoryApp/InventoryApp.csproj]
+/Users/prudvi/Desktop/ui/media/InventoryApp/Controllers/HomeController.cs(8,1): error CS1529: A using clause must precede all other elements defined in the namespace except extern alias declarations [/Users/prudvi/Desktop/ui/media/InventoryApp/InventoryApp.csproj]
+    0 Warning(s)
+    4 Error(s)
+
+Time Elapsed 00:00:01.79
+"b"MSBuild version 17.4.1+9a89d02ff for .NET
+  Determining projects to restore...
+  Restored /Users/prudvi/Desktop/ui/media/InventoryApp/InventoryApp.csproj (in 149 ms).
+/Users/prudvi/Desktop/ui/media/InventoryApp/Controllers/HomeController.cs(6,26): error CS8400: Feature top-level statements is not available in C# 8.0. Please use language version 9.0 or greater. [/Users/prudvi/Desktop/ui/media/InventoryApp/InventoryApp.csproj]
+/Users/prudvi/Desktop/ui/media/InventoryApp/Controllers/HomeController.cs(6,27): error CS0116: A namespace cannot directly contain members such as fields, methods or statements [/Users/prudvi/Desktop/ui/media/InventoryApp/InventoryApp.csproj]
+/Users/prudvi/Desktop/ui/media/InventoryApp/Controllers/HomeController.cs(7,1): error CS1529: A using clause must precede all other elements defined in the namespace except extern alias declarations [/Users/prudvi/Desktop/ui/media/InventoryApp/InventoryApp.csproj]
+/Users/prudvi/Desktop/ui/media/InventoryApp/Controllers/HomeController.cs(8,1): error CS1529: A using clause must precede all other elements defined in the namespace except extern alias declarations [/Users/prudvi/Desktop/ui/media/InventoryApp/InventoryApp.csproj]
+
+Build FAILED.
+
+/Users/prudvi/Desktop/ui/media/InventoryApp/Controllers/HomeController.cs(6,26): error CS8400: Feature top-level statements is not available in C# 8.0. Please use language version 9.0 or greater. [/Users/prudvi/Desktop/ui/media/InventoryApp/InventoryApp.csproj]
+/Users/prudvi/Desktop/ui/media/InventoryApp/Controllers/HomeController.cs(6,27): error CS0116: A namespace cannot directly contain members such as fields, methods or statements [/Users/prudvi/Desktop/ui/media/InventoryApp/InventoryApp.csproj]
+/Users/prudvi/Desktop/ui/media/InventoryApp/Controllers/HomeController.cs(7,1): error CS1529: A using clause must precede all other elements defined in the namespace except extern alias declarations [/Users/prudvi/Desktop/ui/media/InventoryApp/InventoryApp.csproj]
+/Users/prudvi/Desktop/ui/media/InventoryApp/Controllers/HomeController.cs(8,1): error CS1529: A using clause must precede all other elements defined in the namespace except extern alias declarations [/Users/prudvi/Desktop/ui/media/InventoryApp/InventoryApp.csproj]
+    0 Warning(s)
+    4 Error(s)
+
+Time Elapsed 00:00:02.48
+"MSBuild version 17.4.1+9a89d02ff for .NET
+  Determining projects to restore...
+  Restored /Users/prudvi/Desktop/ui/media/MovieList/MovieList.csproj (in 355 ms).
+  MovieList -> /Users/prudvi/Desktop/ui/media/MovieList/bin/Debug/net6.0/MovieList.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:06.68
+MSBuild version 17.4.1+9a89d02ff for .NET
+  Determining projects to restore...
+  Restored /Users/prudvi/Desktop/ui/media/MovieList/MovieList.csproj (in 354 ms).
+  MovieList -> /Users/prudvi/Desktop/ui/media/MovieList/bin/Debug/net6.0/MovieList.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:03.75

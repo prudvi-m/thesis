@@ -1,29 +1,128 @@
 {% extends "zipfiles/base.html" %}
 
 {% block body %}
-  <h3 class="text-center m-4">Update File_Results</h3>
-  {% if success %}
-    <div class="alert alert-success" role="alert">
-      The zipfile updated successfully.
-      <a href="{% url 'index' %}" class="alert-link">Go to Home Page.</a>
+<style>
+    
+  * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+    
+    .file-upload-card {
+      background-color: #ffffff;
+      width: 90%;
+      max-width: 34.37em;
+      position: relative;
+      margin: 2.12em auto;
+      padding: 2.12em 1.25em;
+      border-radius: 0.43em;
+      box-shadow: 0 1.25em 2.18em rgb(1, 28, 71, 0.3);
+    }
+    input[type="file"] {
+      display: none;
+    }
+    .file-input-button, .upload-button {
+      display: block;
+      position: relative;
+      background-color: #025bee;
+      color: #ffffff;
+      font-size: 1.12em;
+      font-weight: 500;
+      text-align: center;
+      width: 18.75em;
+      padding: 1.12em 0;
+      margin: auto;
+      border-radius: 0.31em;
+      cursor: pointer;
+    }
+    .upload-button {
+      border: 0px;
+      width: 9.75em;
+      padding: 0.75em;
+    }
+    #num-of-files {
+      font-weight: 400;
+      text-align: center;
+    }
+    ul {
+      list-style-type: none;
+    }
+
+    .file-upload-card li {
+      font-weight: 500;
+      background-color: #eff5ff;
+      color: #025bee;
+      margin-bottom: 1em;
+      padding: 1.1em 1em;
+      padding-bottom: 0.1em;
+      border-radius: 0.3em;
+      display: flex;
+      justify-content: space-between;
+  }
+
+  h4 { 
+    text-align : center;
+    font-weight: 900
+  }
+
+
+</style>
+<form action="{% url 'edit' id %}" method="POST" enctype="multipart/form-data">
+  <div class="container file-upload-card">
+    <h4>Edit File</h4>
+    <input type="file" id="file-input" accept=".zip" name="uploadfoles" >
+    <label for="file-input" class="file-input-button">
+      <i class="fa-solid fa-arrow-up-from-bracket"></i>
+      &nbsp; Choose Files To Upload
+    </label>
+    <div id="num-of-files"class="my-2">No Files Choosen</div>
+    <div id="divSubmit" class="container my-4 mx-auto">
+      {% csrf_token %}
+      <button type="submit" class="upload-button">
+        <i class="fa fa-paper-plane" aria-hidden="true"></i>&nbsp; Submit</button>
     </div>
-  {% else %}
-    <div class="row justify-content-center">
-      <div class="col-6">
-        <div class="card bg-light mb-3">
-          <div class="card-header">
-            <i class="fa-solid fa-pen-to-square fa-lg"></i> Update File_Results Records
-          </div>
-          <div class="card-body">
-            <form action="" method="POST">
-              {% csrf_token %}
-              {{ form.as_p }}
-              <button type="submit" class="btn btn-primary">Update</button>
-              <a href="{% url 'index' %}" class="btn btn-secondary">Cancel</a>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  {% endif %}
+    <ul id="files-list"></ul>
+  </div>
+<form>
+  <script>
+    let fileInput = document.getElementById("file-input");
+    let fileList = document.getElementById("files-list");
+    let numOfFiles = document.getElementById("num-of-files");
+    let files_count = 0;
+  
+    $(document).ready(function() {
+      if(files_count > 0)
+        $("#divSubmit").show();
+      else
+        $("#divSubmit").hide();
+    });
+  
+    fileInput.addEventListener("change", () => {
+      fileList.innerHTML = "";
+      files_count = fileInput.files.length;
+      numOfFiles.textContent = `${files_count} ${files_count == 1 ? 'file' : 'files'} Selected`;
+  
+      if(files_count > 0)
+        $("#divSubmit").show();
+      else
+        $("#divSubmit").hide();
+      for (var i of fileInput.files) {
+        let reader = new FileReader();
+        let listItem = document.createElement("li");
+        let fileName = i.name;
+        let fileSize = (i.size / 1024).toFixed(1);
+        listItem.innerHTML = `<p><i class="fa fa-file" aria-hidden="true"></i>&nbsp; ${fileName}</p><p>${fileSize}KB</p>`;
+        if (fileSize >= 1024) {
+          fileSize = (fileSize / 1024).toFixed(1);
+          listItem.innerHTML = `<p><i class="fa fa-file" aria-hidden="true"></i>&nbsp; ${fileName}</p><p>${fileSize}MB</p>`;
+        }
+        fileList.appendChild(listItem);
+      }
+    });
+  </script>    
 {% endblock %}
+
+
+
