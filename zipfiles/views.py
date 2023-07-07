@@ -152,6 +152,18 @@ def dashboard(request):
 
     build_list_group_data = {'Build Failed': build_failed_count, 'Build Succeeded': build_succeeded_count}
 
+    if build_failed_count == 0 and build_succeeded_count == 0:
+       
+       build_chart_data = {
+        'labels': [],
+        'datasets': [{
+            'data': [],
+            'backgroundColor': ['#dc3545', '#28a745'],
+        }]
+      }
+       build_list_group_data = {}
+       
+
     # Pass the data to the template
     context = {
         'dotnet_chart_data': dotnet_chart_data,
