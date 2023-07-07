@@ -367,3 +367,13 @@ Build succeeded.
     0 Error(s)
 
 Time Elapsed 00:00:03.75
+MSBuild version 17.4.1+9a89d02ff for .NET
+  Determining projects to restore...
+  Restored /Users/prudvi/Desktop/ui/media/MovieList/MovieList.csproj (in 372 ms).
+  MovieList -> /Users/prudvi/Desktop/ui/media/MovieList/bin/Debug/net6.0/MovieList.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:06.70

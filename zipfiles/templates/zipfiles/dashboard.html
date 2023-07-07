@@ -1,0 +1,118 @@
+{% extends "zipfiles/base.html" %}
+
+{% block body %}
+
+<style>
+  /* Add custom styles here */
+  .dotnet-graph {
+    height: 200px;
+    margin-bottom: 20px;
+  }
+  .database-graph {
+    height: 200px;
+    margin-bottom: 20px;
+  }
+  .build-graph {
+    height: 200px;
+    margin-bottom: 20px;
+  }
+  .success {
+    background-color: #5cb85c;
+    color: #fff;
+  }
+  .failed {
+    background-color: #d9534f;
+    color: #fff;
+  }
+  .list-group {
+    margin-top: 20px;
+  }
+  .list-group-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .list-group-item span {
+    font-weight: bold;
+  }
+  h1,
+  h2 {
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333;
+    font-weight: bold;
+  }
+</style>
+
+<div class="container">
+  <h1>Dashboard</h1>
+
+  <div class="row">
+    <div class="col-md-4">
+      <h2>DotNet Versions</h2>
+      <div class="dotnet-graph">
+        <canvas id="dotnetChart"></canvas>
+      </div>
+      <ul class="list-group">
+        {% for dotnet, value in dotnet_chart_data.items %}
+          <li class="list-group-item">{{ dotnet }}: <span>{{ value }}</span></li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div class="col-md-4">
+      <h2>Databases</h2>
+      <div class="database-graph">
+        <canvas id="databaseChart"></canvas>
+      </div>
+      <ul class="list-group">
+        {% for database, value in database_chart_data.items %}
+          <li class="list-group-item">{{ database }}: <span>{{ value }}</span></li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div class="col-md-4">
+      <h2>Build Status</h2>
+      <div class="build-graph">
+        <canvas id="buildChart"></canvas>
+      </div>
+      <ul class="list-group">
+        {% for label, value in build_chart_data.items %}
+          <li class="list-group-item">{{ label }}: <span>{{ value }}</span></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  // DotNet Versions Chart
+  var dotnetData = {{ dotnet_chart_data | safe }};
+  var dotnetChartElement = document.getElementById('dotnetChart');
+  var dotnetChart = new Chart(dotnetChartElement, {
+    type: 'doughnut',
+    data: dotnetData,
+  });
+
+  // Databases Chart
+  var databaseData = {{ database_chart_data | safe }};
+  var databaseChartElement = document.getElementById('databaseChart');
+  var databaseChart = new Chart(databaseChartElement, {
+    type: 'doughnut',
+    data: databaseData,
+  });
+
+  // Build Status Chart
+  var buildData = {{ build_chart_data | safe }};
+  var buildChartElement = document.getElementById('buildChart');
+  var buildChart = new Chart(buildChartElement, {
+    type: 'doughnut',
+    data: buildData,
+  });
+</script>
+{% endblock %}

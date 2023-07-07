@@ -1,4 +1,3 @@
-import json
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
@@ -6,8 +5,7 @@ from .models import File_Results, UserNamesList
 from .forms import FileForm, UserNamesListForm
 from automate import apply_automate_script
 from .util import extract_username_and_assignment
-import traceback
-
+from django.db.models import Count
 
 # Create your views here.
 
@@ -102,6 +100,61 @@ def automate(request, id):
     return render(request, 'zipfiles/index.html', {
         'zipfiles': File_Results.objects.all()
     })
+
+def dashboard(request):
+   # Retrieve data from the File_Results model
+    dotnet_data = File_Results.objects.filter(dotnet_version__isnull=False)
+    database_data = File_Results.objects.filter(db_name__isnull=False)
+    build_data = File_Results.objects.filter(is_build_succeeded__isnull=False)
+
+    # Count the occurrences of each DotNet version
+    dotnet_counts = dotnet_data.values('dotnet_version').annotate(count=Count('dotnet_version'))
+    dotnet_labels = [item['dotnet_version'] for item in dotnet_counts]
+    dotnet_values = [item['count'] for item in dotnet_counts]
+
+    # Count the occurrences of each database type
+    database_counts = database_data.values('db_type').annotate(count=Count('db_type'))
+    database_labels = [item['db_type'] for item in database_counts]
+    database_values = [item['count'] for item in database_counts]
+
+    # Count the occurrences of build statuses
+    build_failed_count = build_data.filter(is_build_succeeded='Failed').count()
+    build_succeeded_count = build_data.filter(is_build_succeeded='Succeeded').count()
+
+    # Prepare the data for the template
+    dotnet_chart_data = {
+        'labels': dotnet_labels,
+        'datasets': [{
+            'data': dotnet_values,
+            'backgroundColor': ['#007bff', '#dc3545', '#ffc107'],
+        }]
+    }
+
+    database_chart_data = {
+        'labels': database_labels,
+        'datasets': [{
+            'data': database_values,
+            'backgroundColor': ['#28a745', '#ffc107'],
+        }]
+    }
+
+    build_chart_data = {
+        'labels': ['Build Failed', 'Build Succeeded'],
+        'datasets': [{
+            'data': [build_failed_count, build_succeeded_count],
+            'backgroundColor': ['#dc3545', '#28a745'],
+        }]
+    }
+
+    # Pass the data to the template
+    context = {
+        'dotnet_chart_data': dotnet_chart_data,
+        'database_chart_data': database_chart_data,
+        'build_chart_data': build_chart_data,
+    }
+
+    return render(request, 'zipfiles/dashboard.html', context)
+
 
 def delete(request, id):
   if request.method == 'POST':
