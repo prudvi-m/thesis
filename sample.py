@@ -1,52 +1,39 @@
 import re
 
-build_output = """
-MSBuild version 17.4.1+9a89d02ff for .NET
-Determining projects to restore...
-All projects are up-to-date for restore.
-/Users/prudvi/Desktop/ui/media/MovieList/Controllers/MovieController.cs(35,18): error CS1002: ; expected [/Users/prudvi/Desktop/ui/media/MovieList/MovieList.csproj]
-/Users/prudvi/Desktop/ui/media/MovieList/Controllers/HomeController.cs(10,9): error CS1585: Member modifier private must precede the member type and name [/Users/prudvi/Desktop/ui/media/MovieList/MovieList.csproj]
+def extract_username_and_assignment(file_name):
 
-Build FAILED.
+    # Remove the ".zip" extension from the file name
+    file_name = file_name.replace(".zip", "")
 
-/Users/prudvi/Desktop/ui/media/MovieList/Controllers/MovieController.cs(35,18): error CS1002: ; expected [/Users/prudvi/Desktop/ui/media/MovieList/MovieList.csproj]
-/Users/prudvi/Desktop/ui/media/MovieList/Controllers/HomeController.cs(10,9): error CS1585: Member modifier private must precede the member type and name [/Users/prudvi/Desktop/ui/media/MovieList/MovieList.csproj]
-0 Warning(s)
-2 Error(s)
+    if "_" in file_name:
+        username, assignment_number = file_name.split("_")
+        
+        # Validate assignment number
+        if not re.match(r"^\d{2}$", assignment_number):
+            assignment_number = None
+    else:
+        username = file_name
+        assignment_number = None
 
-Time Elapsed 00:00:01.64
-"""
+    # Validate username
+    if not re.match(r"^\w+$", username):
+        return {
+            "username": None,
+            "assignment": None
+        }
 
-# Regular expression pattern
-error_pattern = r"([^/()]+\.cs)\((\d+),\d+\): error (CS\d+): (.+?) \[.+?\]"
+    return {
+        "username": username,
+        "assignment": assignment_number
+    }
+        
 
-# Initialize error count and unique error messages
-error_count = 0
-unique_errors = set()
-error_details = []
+    
 
-# Extract errors and update error count
-error_matches = re.findall(error_pattern, build_output)
+file_names = ["jkl.zip", "mno_3.zip", "pqr", "xyz_26.zip","se@r"]
 
-# Process error matches
-for match in error_matches:
-    filename, line_number, error_code, error_message = match
-    error = f"{filename} - {line_number} - {error_code} - {error_message}"
-    if error not in unique_errors:
-        error_details.append(
-            f"File: {filename}\nLine number: {line_number}\nMessage: {error_message}\nCode: {error_code}"
-        )
-        unique_errors.add(error)
-        error_count += 1
+for i in file_names:
+    print(extract_username_assignment(i))
 
-# Check if "Build FAILED" line is present
-if "Build FAILED" in build_output:
-    error_details.append("Build FAILED.")
 
-error_details.append(f"Total Errors: {error_count}\n")
 
-# Create a single multiline string
-multiline_string = "\n\n".join(error_details)
-
-print(multiline_string)
-# print(f"\nTotal Errors: {error_count}")

@@ -13,6 +13,18 @@
   <button id="myButton" type="submit" class="btn btn-primary m-3">Run Automation</button>
 </form> {% endcomment %}
 
+{% if failed_files %}
+    <div id="failed-files-notification" class="alert alert-danger" role="alert">
+      Files failed to upload due to invalid filenames as per instructions: <b> {{ failed_files|join:', ' }} </b>
+    </div>
+    <script>
+        setTimeout(function() {
+            var notification = document.getElementById('failed-files-notification');
+            notification.style.display = 'none';
+        }, 10000);
+    </script>
+{% endif %}
+
 <div class="row">
   <div class="col-12">
     {% if zipfiles %}
@@ -25,7 +37,6 @@
               <th scope="col">File Size</th>
               <th scope="col">Database</th>
               <th scope="col">Database Type</th>
-              <th scope="col">Email</th>
               <th scope="col">Build</th>
               <th scope="col">Assignment</th>
               <th scope="col">Version</th>
@@ -40,7 +51,6 @@
                 <td>{{ zipfile.f_size|default:"" }}</td>
                 <td>{{ zipfile.db_name|default:"" }}</td>
                 <td>{{ zipfile.db_type|default:"" }}</td>
-                <td>{{ zipfile.email|default:"" }}</td>
                 <td>{{ zipfile.is_build_succeeded|default:"" }}</td>
                 <td>{{ zipfile.assignment_number|default:"" }}</td>
                 <td>{{ zipfile.dotnet_version|default:"" }}</td>

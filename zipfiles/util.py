@@ -1,11 +1,27 @@
 import re
+from .models import UserNamesList
 
 def extract_username_and_assignment(file_name):
-    pattern = r'^(.*)_([0-9]+)\.zip$'
-    match = re.match(pattern, file_name)
-    if match:
-        username = match.group(1)
-        assignment = int(match.group(2))
-        return username, assignment
+
+    # Remove the ".zip" extension from the file name
+    file_name = file_name.replace(".zip", "")
+
+    if "_" in file_name:
+        username, assignment_number = file_name.split("_")
+        
+        # Validate assignment number
+        if not re.match(r"^\d{2}$", assignment_number):
+            assignment_number = None
     else:
-        return None,None
+        username = file_name
+        assignment_number = None
+
+    # Validate username
+    if not re.match(r"^\w+$", username):
+        None,None
+
+    return username,assignment_number
+
+def check_username_exists(username):
+    exists = UserNamesList.objects.filter(user_name=username).exists()
+    return exists

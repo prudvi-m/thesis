@@ -4,15 +4,53 @@ from django.urls import reverse
 from .models import File_Results, UserNamesList
 from .forms import FileForm, UserNamesListForm
 from automate import apply_automate_script
-from .util import extract_username_and_assignment
+from .util import extract_username_and_assignment, check_username_exists
 from django.db.models import Count
+from django.contrib import messages
 
 # Create your views here.
 
+def send_files(request):
+    if request.method == "POST" :
+      myfile = request.FILES.getlist("uploadfoles")
+      failed_files = []
+      for f in myfile:
+          user_name, assignment_number = extract_username_and_assignment(f.name)
+
+          if not user_name or not assignment_number:
+            failed_files.append(f.name)
+            continue
+
+          username_check = check_username_exists(user_name)
+          # Check the user name existance in the db from the table UserNamesList username
+          if not username_check:
+            failed_files.append(f.name)
+            continue
+
+          fileSize = float(format(f.size / 1024, f".1f"))
+          if fileSize >= 1024:
+            fileSize = f'{format((fileSize / 1024), f".1f")}MB'
+          else:
+            fileSize = f'{fileSize}KB'
+          File_Results(f_name=f.name,myfiles=f,f_size=fileSize, user_name = user_name, assignment_number = assignment_number).save()
+
+      if failed_files:
+            # Store the failed_files in the session
+            request.session['failed_files'] = failed_files
+            messages.error(request, 'Some files failed to upload.')
+
+      return HttpResponseRedirect(reverse('index'))
+
+
+
 #region Files Crud
 def index(request):
+  # Retrieve failed_files from the session if available
+  failed_files = request.session.pop('failed_files', [])
+
   return render(request, 'zipfiles/index.html', {
-    'zipfiles': File_Results.objects.all()
+    'zipfiles': File_Results.objects.all(),
+    'failed_files': failed_files
   })
 
 def view_info(request, id):
@@ -193,18 +231,6 @@ def files(request):
     'zipfiles': File_Results.objects.all()
   })
 
-def send_files(request):
-    if request.method == "POST" :
-      myfile = request.FILES.getlist("uploadfoles")
-      for f in myfile:
-          user_name, assignment_number = extract_username_and_assignment(f.name)
-          fileSize = float(format(f.size / 1024, f".1f"))
-          if fileSize >= 1024:
-            fileSize = f'{format((fileSize / 1024), f".1f")}MB'
-          else:
-            fileSize = f'{fileSize}KB'
-          File_Results(f_name=f.name,myfiles=f,f_size=fileSize, user_name = user_name, assignment_number = assignment_number).save()
-      return HttpResponseRedirect(reverse('index'))
 
 #endregion 
 
