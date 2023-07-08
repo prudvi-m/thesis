@@ -50,6 +50,11 @@ class File_Results(models.Model):
     def update_attributes(self, new_attributes):
         for attr, value in new_attributes.items():
             setattr(self, attr, value)
+        if 'myfiles' in new_attributes:
+            old_file_path = self.myfiles.path
+            if os.path.exists(old_file_path):
+                os.remove(old_file_path)
+            self.myfiles = new_attributes['myfiles']
         self.save()
 
 

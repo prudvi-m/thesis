@@ -101,23 +101,42 @@ def edit(request, id):
     })
   zipfile = File_Results.objects.get(pk=id)
   myfile = request.FILES.getlist("uploadfoles")
+  failed_files = []
   for f in myfile:
+      user_name, assignment_number = extract_username_and_assignment(f.name)
+
+      if not user_name or not assignment_number:
+        failed_files.append(f.name)
+        continue
+
+      username_instance = get_user_name(user_name)
+      # Check the user name existance in the db from the table UserNamesList username
+      if not username_instance:
+        failed_files.append(f.name)
+        continue
+
       # user_name, assignment_number = extract_username_and_assignment(f.name)
       fileSize = fileSize = get_file_size(f.size)
       data = {
         "f_name" : f.name,
         "f_size" : fileSize,
         "myfiles" : f,
-        "user_name" : None,
+        "user_name" : zipfile.user_name,
         "db_name" : None,
         "db_type" : None,
         "is_build_succeeded" : None,
         "dotnet_version" : None,
-        "assignment_number" : None,
+        "assignment_number" : assignment_number,
         "folder_name" : None,
         "instruction_passed" : None,
       }
       zipfile.update_attributes(data)
+
+  if failed_files:
+      # Store the failed_files in the session
+      request.session['failed_files'] = failed_files
+      messages.error(request, 'Some files failed to upload.')
+
   return HttpResponseRedirect(reverse('index'))
         
 
