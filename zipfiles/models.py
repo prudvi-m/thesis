@@ -9,6 +9,7 @@ import os
 # Create your models here.
 class UserNamesList(models.Model):
     user_name = models.CharField(
+        primary_key=True,  # Set user_name as the primary key
         max_length=255,
         unique=True,
         validators=[
@@ -27,29 +28,33 @@ class UserNamesList(models.Model):
         verbose_name_plural = 'UserNamesList'
 
 class File_Results(models.Model):
-  id_number = models.PositiveIntegerField(null=True)
-  f_name = models.CharField(max_length=255,null=True)
-  f_size = models.CharField(max_length=50,null=True)
-  myfiles = models.FileField(upload_to="")
-  user_name = models.ForeignKey('UserNamesList', on_delete=models.CASCADE, null=True)
-  db_name = models.CharField(max_length=50,null=True)
-  db_type = models.CharField(max_length=50,null=True)
-  is_build_succeeded = models.CharField(max_length=50,null=True)
-  dotnet_version = models.CharField(max_length=20,null=True)
-  error_details = models.TextField(null=True)
-  assignment_number = models.IntegerField(null=True)
-  folder_name = models.CharField(max_length=50,null=True)
-  instruction_passed = models.CharField(max_length=50,null=True)
+    id_number = models.PositiveIntegerField(null=True)
+    f_name = models.CharField(max_length=255, null=True)
+    f_size = models.CharField(max_length=50, null=True)
+    myfiles = models.FileField(upload_to="")
+    user_name = models.ForeignKey(
+        'UserNamesList',
+        on_delete=models.CASCADE,
+        db_column='user_name',
+        default=None
+    )
+    db_name = models.CharField(max_length=50, null=True)
+    db_type = models.CharField(max_length=50, null=True)
+    is_build_succeeded = models.CharField(max_length=50, null=True)
+    dotnet_version = models.CharField(max_length=20, null=True)
+    error_details = models.TextField(null=True)
+    assignment_number = models.IntegerField(null=True)
+    folder_name = models.CharField(max_length=50, null=True)
+    instruction_passed = models.CharField(max_length=50, null=True)
+
+    def update_attributes(self, new_attributes):
+        for attr, value in new_attributes.items():
+            setattr(self, attr, value)
+        self.save()
 
 
-  def update_attributes(self, new_attributes):
-    for attr, value in new_attributes.items():
-        setattr(self, attr, value)
-    self.save()
-
-
-  def __str__(self):
-    return f'files: {self.user_name} {self.db_name}'
+    def __str__(self):
+        return f'files: {self.user_name} {self.db_name}'
 
 @receiver(pre_delete, sender=File_Results)
 def delete_file_on_delete(sender, instance, **kwargs):

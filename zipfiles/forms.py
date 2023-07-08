@@ -1,6 +1,5 @@
 from django import forms
 from .models import File_Results, UserNamesList
-from django.core.validators import MinLengthValidator
 
 
 class FileForm(forms.ModelForm):

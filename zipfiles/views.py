@@ -4,7 +4,7 @@ from django.urls import reverse
 from .models import File_Results, UserNamesList
 from .forms import FileForm, UserNamesListForm
 from automate import apply_automate_script
-from .util import extract_username_and_assignment, check_username_exists
+from .util import extract_username_and_assignment, get_user_name, get_file_result, get_file_size
 from django.db.models import Count
 from django.contrib import messages
 
@@ -21,35 +21,43 @@ def send_files(request):
             failed_files.append(f.name)
             continue
 
-          username_check = check_username_exists(user_name)
+          username_instance = get_user_name(user_name)
           # Check the user name existance in the db from the table UserNamesList username
-          if not username_check:
+          if not username_instance:
             failed_files.append(f.name)
             continue
-
-          fileSize = float(format(f.size / 1024, f".1f"))
-          if fileSize >= 1024:
-            fileSize = f'{format((fileSize / 1024), f".1f")}MB'
+          fileSize = get_file_size(f.size)
+          existed = get_file_result(user_name,assignment_number)
+          if not existed:
+            File_Results(f_name=f.name,myfiles=f,f_size=fileSize, user_name = username_instance, assignment_number = assignment_number).save()
           else:
-            fileSize = f'{fileSize}KB'
-          File_Results(f_name=f.name,myfiles=f,f_size=fileSize, user_name = user_name, assignment_number = assignment_number).save()
-
+             data = {
+                "f_name" : f.name,
+                "f_size" : fileSize,
+                "myfiles" : f,
+                "user_name" : username_instance,
+                "db_name" : None,
+                "db_type" : None,
+                "is_build_succeeded" : None,
+                "dotnet_version" : None,
+                "assignment_number" : None,
+                "folder_name" : None,
+                "instruction_passed" : None,
+              }
+             existed.update_attributes(data)
       if failed_files:
-            # Store the failed_files in the session
-            request.session['failed_files'] = failed_files
-            messages.error(request, 'Some files failed to upload.')
-
+          # Store the failed_files in the session
+          request.session['failed_files'] = failed_files
+          messages.error(request, 'Some files failed to upload.')
       return HttpResponseRedirect(reverse('index'))
-
-
 
 #region Files Crud
 def index(request):
   # Retrieve failed_files from the session if available
   failed_files = request.session.pop('failed_files', [])
-
+  file_results = File_Results.objects.all()
   return render(request, 'zipfiles/index.html', {
-    'zipfiles': File_Results.objects.all(),
+    'zipfiles': file_results,
     'failed_files': failed_files
   })
 
@@ -95,11 +103,7 @@ def edit(request, id):
   myfile = request.FILES.getlist("uploadfoles")
   for f in myfile:
       # user_name, assignment_number = extract_username_and_assignment(f.name)
-      fileSize = float(format(f.size / 1024, f".1f"))
-      if fileSize >= 1024:
-        fileSize = f'{format((fileSize / 1024), f".1f")}MB'
-      else:
-        fileSize = f'{fileSize}KB'
+      fileSize = fileSize = get_file_size(f.size)
       data = {
         "f_name" : f.name,
         "f_size" : fileSize,
