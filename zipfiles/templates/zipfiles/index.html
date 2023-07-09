@@ -34,10 +34,10 @@
             <tr>
               <th scope="col">File name</th>
               <th scope="col">File Size</th>
+              <th scope="col">Assignment</th>
               <th scope="col">Database</th>
               <th scope="col">Database Type</th>
               <th scope="col">Build</th>
-              <th scope="col">Assignment</th>
               <th scope="col">Version</th>
               {% comment %} <th scope="col">Instruction</th> {% endcomment %}
               <th scope="col">Actions</th>
@@ -48,10 +48,10 @@
               <tr {% if zipfile.is_build_succeeded == 'False' %}class="table-danger"{% endif %}>
                 <td class="align-middle">{{ zipfile.f_name|default:"" }}</td>
                 <td class="align-middle">{{ zipfile.f_size|default:"" }}</td>
+                <td class="align-middle">{{ zipfile.assignment_number|default:"" }}</td>
                 <td class="align-middle">{{ zipfile.db_name|default:"" }}</td>
                 <td class="align-middle">{{ zipfile.db_type|default:"" }}</td>
                 <td class="align-middle">{{ zipfile.is_build_succeeded|default:"" }}</td>
-                <td class="align-middle">{{ zipfile.assignment_number|default:"" }}</td>
                 <td class="align-middle">{{ zipfile.dotnet_version|default:"" }}</td>
                 <td>
                   <a class="btn btn-success me-1" href="{% url 'view_info' zipfile.id %}" data-bs-toggle="modal" data-bs-target="#myModal{{zipfile.id}}">
