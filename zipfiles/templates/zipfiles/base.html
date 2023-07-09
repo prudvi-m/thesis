@@ -37,6 +37,10 @@
         height: 70px;
         animation: spin 1s linear infinite;
       }
+
+      body, table {
+        font-size: 14px;
+      }
     
       @keyframes spin {
         0% { transform: rotate(0deg); }
@@ -73,23 +77,23 @@
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'add' %}">
-                  <i class="fa-solid fa-plus fa-lg"></i> Add Files
+                  <i class="fas fa-file-alt"></i> Add Files
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'user_list' %}">
-                  <i class="fa-solid fa-list fa-lg"></i> Users
+                  <i class="fas fa-users"></i> Users
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'user_create' %}">
-                  <i class="fa-solid fa-list fa-lg"></i> Add User
+                  <i class="fas fa-user-plus"></i> Add User
                 </a>
               </li>
 
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'dashboard' %}">
-                  <i class="fa-solid fa-list fa-lg"></i> Dashboard
+                  <i class="fas fa-chart-bar"></i> Dashboard
                 </a>
               </li>
 

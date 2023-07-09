@@ -2,17 +2,13 @@
 
 {% block body %}
 <style>
+  
   .line-break-example {
     white-space: pre-line;
   }
 </style>
 <h3 class="m-4">All Zipfiles</h3>
-
-{% comment %} <form action="{% url 'automate' %}" method="GET">
-  {% csrf_token %}
-  <button id="myButton" type="submit" class="btn btn-primary m-3">Run Automation</button>
-</form> {% endcomment %}
-
+  
 {% if failed_files %}
     <div id="failed-files-notification" class="alert alert-danger" role="alert">
       Files failed to upload due to invalid filenames as per instructions: <b> {{ failed_files|join:', ' }} </b>
@@ -29,6 +25,9 @@
   <div class="col-12">
     {% if zipfiles %}
     <div class="ms-4 me-4 mb-4">
+      <a class="btn btn-primary btn-sm mx-3 my-1" href="{% url 'add' %}">
+        <i class="fas fa-file-alt"></i> Add Files
+      </a>
       <div>
         <table class="table table-hover">
           <thead class="thead-dark">
