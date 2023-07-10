@@ -46,6 +46,13 @@
             {% endfor %}
           </select>
         </div>
+        <div class="form-group col">
+            <label for="submission">Submission:</label>
+            <select class="form-control" id="submission" name="submission">
+              <option value="Submitted" {% if selected_submission == 'Submitted' %}selected{% endif %}>Submitted</option>
+              <option value="Not Submitted" {% if selected_submission == 'Not Submitted' %}selected{% endif %}>Not Submitted</option>
+            </select>
+        </div>
       </div>
       <button type="submit" class="btn btn-sm btn-info m-2">
         <i class="fas fa-filter"></i> Filter Data
@@ -98,6 +105,26 @@
       e.clearSelection();
     });
   });
+
+  var submissionDropdown = document.getElementById('submission');
+  var statusDropdown = document.getElementById('status');
+  var dbTypeDropdown = document.getElementById('db_type');
+
+  submissionDropdown.addEventListener('change', function() {
+    if (submissionDropdown.value === 'Not Submitted') {
+      statusDropdown.disabled = true;
+      dbTypeDropdown.disabled = true;
+    } else {
+      statusDropdown.disabled = false;
+      dbTypeDropdown.disabled = false;
+    }
+  });
+
+  // Disable status and db_type dropdowns initially if "Not Submitted" is selected
+  if (submissionDropdown.value === 'Not Submitted') {
+    statusDropdown.disabled = true;
+    dbTypeDropdown.disabled = true;
+  }
 </script>
 
 {% endblock %}
