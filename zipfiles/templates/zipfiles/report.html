@@ -75,4 +75,29 @@
       {% endfor %}
     </tbody>
   </table>
+
+  {% if users %}
+  <button type="button" class="btn btn-sm btn-primary m-2" id="copy-emails">
+    <i class="fas fa-copy"></i> Copy Emails
+  </button>
+  {% endif %}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+<script>
+  document.getElementById('copy-emails').addEventListener('click', function() {
+    var emails = Array.from(document.querySelectorAll('tbody tr td:first-child')).map(function(td) {
+      return td.textContent.trim();
+    }).join('\n');
+    var clipboard = new ClipboardJS('#copy-emails', {
+      text: function() {
+        return emails;
+      }
+    });
+    clipboard.on('success', function(e) {
+      alert('Emails copied!');
+      e.clearSelection();
+    });
+  });
+</script>
+
 {% endblock %}
