@@ -142,3 +142,11 @@ GitHub.sublime-settings
 
 .vscode
 *.pyc
+
+
+# Ignore all folders inside the "media" folder
+/media/*/
+
+# Ignore all files inside the "media" folder except ZIP files
+/media/*
+!/media/*.zip

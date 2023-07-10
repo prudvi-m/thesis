@@ -119,10 +119,13 @@ def is_appsettings_json_existed(project_path):
     return os.path.isfile(appsettings_file_path)
 
 def read_connection_string(appsettings_file):
-    with open(appsettings_file, 'r') as file:
-        appsettings = json.load(file)
-        connection_strings = appsettings.get('ConnectionStrings', {})
-        return connection_strings
+    try:
+        with open(appsettings_file, 'r') as file:
+            appsettings = json.load(file)
+            connection_strings = appsettings.get('ConnectionStrings', {})
+            return connection_strings
+    except:
+        return None
 
 def get_database(project_path):
     # os.chdir(project_path)
@@ -132,18 +135,19 @@ def get_database(project_path):
     is_file_existed = is_appsettings_json_existed(settings_path)
     if is_file_existed:
         connection_string = read_connection_string(f"{settings_path}/appsettings.json")
-        for key, value in connection_string.items():
-            # sqlite
-            if isinstance(value, str) and '.sqlite' in value:
-                database = { 
-                                'db_name' : get_database_name(connection_string[key], r"Filename=(.*?)\.sqlite"),
-                                'db_type' : 'Sqlite'
-                            }
-                
-                # print(f" - {key}: {value}")
-            # sqlserver
-            else:
-                database = { 
+        if connection_string:
+            for key, value in connection_string.items():
+                # sqlite
+                if isinstance(value, str) and '.sqlite' in value:
+                    database = { 
+                                    'db_name' : get_database_name(connection_string[key], r"Filename=(.*?)\.sqlite"),
+                                    'db_type' : 'Sqlite'
+                                }
+                    
+                    # print(f" - {key}: {value}")
+                # sqlserver
+                else:
+                    database = { 
                                 'db_name' : get_database_name(connection_string[key]),
                                 'db_type' : 'SqlServer'
                             }
