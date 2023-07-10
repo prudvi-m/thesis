@@ -40,7 +40,7 @@ def send_files(request):
                 "db_type" : None,
                 "is_build_succeeded" : None,
                 "dotnet_version" : None,
-                "assignment_number" : None,
+                "assignment_number" : assignment_number,
                 "folder_name" : None,
                 "instruction_passed" : None,
               }
