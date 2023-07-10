@@ -217,12 +217,12 @@ def dashboard(request):
     if build_failed_count == 0 and build_succeeded_count == 0:
        
        build_chart_data = {
-        'labels': [],
-        'datasets': [{
-            'data': [],
-            'backgroundColor': ['#dc3545', '#28a745'],
-        }]
-      }
+          'labels': [],
+          'datasets': [{
+              'data': [],
+              'backgroundColor': ['#dc3545', '#28a745'],
+          }]
+        }
        build_list_group_data = {}
        
 
@@ -237,7 +237,7 @@ def dashboard(request):
     }
 
 
-    print("\n\nContext:\n\n   *****\n\n", context,"\n\n***** \n\n")
+    print("\n\nContext:\n\n*****\n\n", context,"\n\n***** \n\n")
 
     return render(request, 'zipfiles/dashboard.html', context)
 
