@@ -1,0 +1,78 @@
+{% extends "zipfiles/base.html" %}
+
+{% block body %}
+
+<style>
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+    
+.form-group {
+    flex-basis: 0;
+    flex-grow: 1;
+    max-width: 100%;
+}      
+</style>
+<form method="POST" action="{% url 'report' %}">
+    {% csrf_token %}
+    <div class="form-row mx-4 my-4">
+        <div class="form-group col">
+          <label for="assignment_number">Assignment Number:</label>
+          <select class="form-control" id="assignment_number" name="assignment_number">
+            <option value="">All</option>
+            {% for assignment_number in assignment_numbers %}
+              <option value="{{ assignment_number }}" {% if assignment_number == selected_assignment %}selected{% endif %}>{{ assignment_number }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="form-group col">
+          <label for="status">Status:</label>
+          <select class="form-control" id="status" name="status">
+            <option value="">All</option>
+            <option value="Failed" {% if selected_status == 'Failed' %}selected{% endif %}>Failed</option>
+            <option value="Success" {% if selected_status == 'Success' %}selected{% endif %}>Success</option>
+          </select>
+        </div>
+        <div class="form-group col">
+          <label for="db_type">Database Type:</label>
+          <select class="form-control" id="db_type" name="db_type">
+            <option value="">All</option>
+            {% for db_type in database_types %}
+              {% if db_type %}
+                <option value="{{ db_type }}" {% if db_type == selected_db_type %}selected{% endif %}>{{ db_type }}</option>
+              {% endif %}
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-sm btn-info m-2">
+        <i class="fas fa-filter"></i> Filter Data
+      </button>
+  </form>
+  <table class="table mx-2">
+    <thead>
+      <tr>
+        <th>Email</th>
+        <th>Assignment Number</th>
+        <th>Status</th>
+        <th>Database Type</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for user in users %}
+        <tr>
+          <td>{{ user.user_name.email|default:"" }}</td>
+          <td>{{ user.assignment_number|default:"" }}</td>
+          <td>{{ user.is_build_succeeded|default:"" }}</td>
+          <td>{{ user.db_type|default:"" }}</td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="4">No users found.</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

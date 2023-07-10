@@ -8,6 +8,7 @@ urlpatterns = [
   path('edit/<int:id>/', views.edit, name='edit'),
   path('delete/<int:id>/', views.delete, name='delete'),
   path('files/',views.files,name='files'),
+  path('report/',views.report,name='report'),
   path('automate/<int:id>/', views.automate, name='automate'),
   path('send_files/',views.send_files,name='send_files'),
   path('user_list/', views.user_list, name='user_list'),
