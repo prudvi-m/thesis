@@ -122,55 +122,50 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
 <script>
-  document.getElementById('copy-emails').addEventListener('click', function()() {
-    var emails = Array.from(document.querySelectorAll('tbody tr td:first-child')).map(function(td) {
-      return td.textContent.trim();
-    }).join('\n');
-    var clipboard = new ClipboardJS('#copy-emails', {
-      text: function() {
-        return emails;
-      }
-    });
-    clipboard.on('success', function(e) {
+    function copyToClipboard(text) {
+      var textarea = document.createElement('textarea');
+      textarea.value = text;
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textarea);
+    }
+  
+    document.getElementById('copy-emails').addEventListener('click', function() {
+      var emails = Array.from(document.querySelectorAll('tbody tr td:first-child')).map(function(td) {
+        return td.textContent.trim();
+      }).join('\n');
+      copyToClipboard(emails);
       alert('Emails copied!');
-      e.clearSelection();
     });
-  });
-
-  document.getElementById('copy-missing-emails').addEventListener('click', function() {
-    var missingEmails = Array.from(document.querySelectorAll('#missing-emails-table tbody tr td:first-child')).map(function(td) {
-      return td.textContent.trim();
-    }).join('\n');
-    var clipboard = new ClipboardJS('#copy-missing-emails', {
-      text: function() {
-        return missingEmails;
+  
+    document.getElementById('copy-missing-emails').addEventListener('click', function() {
+      var missingEmails = Array.from(document.querySelectorAll('#missing-emails-table tbody tr td:first-child')).map(function(td) {
+        return td.textContent.trim();
+      }).join('\n');
+      copyToClipboard(missingEmails);
+      alert('Missing emails copied!');
+    });
+  
+    var submissionDropdown = document.getElementById('submission');
+    var statusDropdown = document.getElementById('status');
+    var dbTypeDropdown = document.getElementById('db_type');
+  
+    submissionDropdown.addEventListener('change', function() {
+      if (submissionDropdown.value === 'Not Submitted') {
+        statusDropdown.disabled = true;
+        dbTypeDropdown.disabled = true;
+      } else {
+        statusDropdown.disabled = false;
+        dbTypeDropdown.disabled = false;
       }
     });
-    clipboard.on('success', function(e) {
-      alert('Missing emails copied!');
-      e.clearSelection();
-    });
-  });
-
-  var submissionDropdown = document.getElementById('submission');
-  var statusDropdown = document.getElementById('status');
-  var dbTypeDropdown = document.getElementById('db_type');
-
-  submissionDropdown.addEventListener('change', function() {
+  
+    // Disable status and db_type dropdowns initially if "Not Submitted" is selected
     if (submissionDropdown.value === 'Not Submitted') {
       statusDropdown.disabled = true;
       dbTypeDropdown.disabled = true;
-    } else {
-      statusDropdown.disabled = false;
-      dbTypeDropdown.disabled = false;
     }
-  });
-
-  // Disable status and db_type dropdowns initially if "Not Submitted" is selected
-  if (submissionDropdown.value === 'Not Submitted') {
-    statusDropdown.disabled = true;
-    dbTypeDropdown.disabled = true;
-  }
 </script>
-
+    
 {% endblock %}
