@@ -128,8 +128,6 @@ def read_connection_string(appsettings_file):
         return None
 
 def get_database(project_path):
-    # os.chdir(project_path)
-    # os.chdir(current_path)
     database = {'db_name' : '', 'db_type' : '' }
     settings_path = f"{extract_path}/{project_path}"
     is_file_existed = is_appsettings_json_existed(settings_path)
@@ -166,17 +164,27 @@ def get_database_name(connection_string, pattern = r"Database=(.*?);"):
 
 #region 5.Dotnet Version 
 def get_version(project_path):
-    # Read and parse the .csproj file
-    print(f"\nversion path : {project_path}/{project_path}.csproj")
-    tree = ET.parse(f"{extract_path}/{project_path}/{project_path}.csproj")
-    root = tree.getroot()
+    csproj_files = []
+    for root, dirs, files in os.walk(f"{extract_path}/{project_path}"):
+        for file in files:
+            if file.endswith(".csproj"):
+                csproj_files.append(os.path.join(root, file))
+
     dotnet_version = ''
-    # Find the TargetFramework element
-    target_framework_element = root.find("./PropertyGroup/TargetFramework")
-    if target_framework_element is not None:
-        # Extract the .NET version from the TargetFramework element
-        dotnet_version = target_framework_element.text
-        # print("The .NET version is:", dotnet_version)
+    for csproj_file in csproj_files:
+        # Read and parse the .csproj file
+        tree = ET.parse(csproj_file)
+        root = tree.getroot()
+
+        # Find the TargetFramework element
+        target_framework_element = root.find("./PropertyGroup/TargetFramework")
+        if target_framework_element is not None:
+            # Extract the .NET version from the TargetFramework element
+            dotnet_version = target_framework_element.text
+            # Print the version and break the loop if a valid version is found
+            print("The .NET version is:", dotnet_version)
+            break
+
     return dotnet_version
 
 #endregion
