@@ -1428,3 +1428,13 @@ Build succeeded.
     0 Error(s)
 
 Time Elapsed 00:00:07.57
+MSBuild version 17.4.1+9a89d02ff for .NET
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  Bookstore -> /Users/prudvi/Desktop/ui/media/Bookstore/bin/Debug/net6.0/Bookstore.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:07.72
