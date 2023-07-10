@@ -262,38 +262,54 @@ def report(request):
     assignment_number = ''
     status = ''
     db_type = ''
+    submission = 'Submitted'
+    missing_user_names = []
+    users = []
     if request.method == 'POST':
+      submission = request.POST.get('submission')
       assignment_number = request.POST.get('assignment_number')
       status = request.POST.get('status')
       db_type = request.POST.get('db_type')
       
-      filters = {}
       
+      filters = {}
+
       # Check if assignment_number is a valid integer
       if assignment_number.isdigit():
-          filters['assignment_number'] = int(assignment_number)
+        filters['assignment_number'] = int(assignment_number)
       
-      # Apply filter based on status
-      if status == 'Failed':
-          filters['is_build_succeeded'] = 'False'
-      elif status == 'Success':
-          filters['is_build_succeeded'] = 'True'
+      if submission != 'Not Submitted':
       
-      # Apply filter based on db_type if it is not empty
-      if db_type and db_type != "":
-          filters['db_type'] = db_type
+                
+        # Apply filter based on status
+        if status == 'Failed':
+            filters['is_build_succeeded'] = 'False'
+        elif status == 'Success':
+            filters['is_build_succeeded'] = 'True'
+        
+        # Apply filter based on db_type if it is not empty
+        if db_type and db_type != "":
+            filters['db_type'] = db_type
+        
+        users = File_Results.objects.filter(**filters)
+
+      else:
+        file_result_user_names = File_Results.objects.filter(**filters).values_list('user_name__user_name', flat=True).distinct()
+        user_names_list = UserNamesList.objects.values_list('user_name', flat=True).distinct()
+        missing_user_names = set(user_names_list) - set(file_result_user_names)
+
       
-      users = File_Results.objects.filter(**filters)
     else:
         users = File_Results.objects.all()
-    
     context = {
       'users': users,
       'assignment_numbers': assignment_numbers,
       'database_types': database_types,
       'selected_assignment': '' if not assignment_number.isdigit() else int(assignment_number),
       'selected_status': status,
-      'selected_db_type': db_type,  
+      'selected_db_type': db_type,
+      'selected_submission': submission,
+      'missing_user_names' : missing_user_names
     }
     
     return render(request, 'zipfiles/report.html', context)

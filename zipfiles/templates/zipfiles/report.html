@@ -58,40 +58,71 @@
         <i class="fas fa-filter"></i> Filter Data
       </button>
   </form>
-  <table class="table mx-2">
-    <thead>
-      <tr>
-        <th>Email</th>
-        <th>Assignment Number</th>
-        <th>Status</th>
-        <th>Database Type</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for user in users %}
-        <tr>
-          <td>{{ user.user_name.email|default:"" }}</td>
-          <td>{{ user.assignment_number|default:"" }}</td>
-          <td>{{ user.is_build_succeeded|default:"" }}</td>
-          <td>{{ user.db_type|default:"" }}</td>
-        </tr>
-      {% empty %}
-        <tr>
-          <td colspan="4">No users found.</td>
-        </tr>
-      {% endfor %}
-    </tbody>
-  </table>
 
-  {% if users %}
-  <button type="button" class="btn btn-sm btn-primary m-2" id="copy-emails">
-    <i class="fas fa-copy"></i> Copy Emails
-  </button>
+  {% if missing_user_names %}
+    <div class="container mt-4">
+      <h3>Emails of Missing User Names</h3>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Email</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for missing_user_name in missing_user_names %}
+            <tr>
+              <td>{{ missing_user_name }}</td>
+            </tr>
+          {% empty %}
+            <tr>
+              <td colspan="1">No missing emails found.</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      {% if missing_user_names %}
+      <button type="button" class="btn btn-sm btn-primary" id="copy-missing-emails">
+        <i class="fas fa-copy"></i> Copy Emails
+      </button>
+      {% endif %}
+    </div>
+  {% else %}
+    <table class="table mx-2">
+      <thead>
+        <tr>
+          <th>Email</th>
+          <th>Assignment Number</th>
+          <th>Status</th>
+          <th>Database Type</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for user in users %}
+          <tr>
+            <td>{{ user.user_name.email|default:"" }}</td>
+            <td>{{ user.assignment_number|default:"" }}</td>
+            <td>{{ user.is_build_succeeded|default:"" }}</td>
+            <td>{{ user.db_type|default:"" }}</td>
+          </tr>
+        {% empty %}
+          <tr>
+            <td colspan="4">No users found.</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    {% if users %}
+    <button type="button" class="btn btn-sm btn-primary m-2" id="copy-emails">
+      <i class="fas fa-copy"></i> Copy Emails
+    </button>
+    {% endif %}
   {% endif %}
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
 <script>
-  document.getElementById('copy-emails').addEventListener('click', function() {
+  document.getElementById('copy-emails').addEventListener('click', function()() {
     var emails = Array.from(document.querySelectorAll('tbody tr td:first-child')).map(function(td) {
       return td.textContent.trim();
     }).join('\n');
@@ -102,6 +133,21 @@
     });
     clipboard.on('success', function(e) {
       alert('Emails copied!');
+      e.clearSelection();
+    });
+  });
+
+  document.getElementById('copy-missing-emails').addEventListener('click', function() {
+    var missingEmails = Array.from(document.querySelectorAll('#missing-emails-table tbody tr td:first-child')).map(function(td) {
+      return td.textContent.trim();
+    }).join('\n');
+    var clipboard = new ClipboardJS('#copy-missing-emails', {
+      text: function() {
+        return missingEmails;
+      }
+    });
+    clipboard.on('success', function(e) {
+      alert('Missing emails copied!');
       e.clearSelection();
     });
   });
