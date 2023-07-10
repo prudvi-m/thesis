@@ -3,7 +3,7 @@ import os
 import subprocess
 import zipfile
 import re
-import json
+import json5
 import shutil
 import xml.etree.ElementTree as ET
 
@@ -121,11 +121,17 @@ def is_appsettings_json_existed(project_path):
 def read_connection_string(appsettings_file):
     try:
         with open(appsettings_file, 'r') as file:
-            appsettings = json.load(file)
+            appsettings = json5.load(file)
             connection_strings = appsettings.get('ConnectionStrings', {})
             return connection_strings
-    except:
-        return None
+    except FileNotFoundError:
+        print(f"Error: File '{appsettings_file}' not found.")
+    except json5.JSONDecodeError as e:
+        print(f"Error: Failed to parse JSON file '{appsettings_file}': {e}")
+    except Exception as e:
+        print(f"Error: {e}")
+    return None
+
 
 def get_database(project_path):
     database = {'db_name' : '', 'db_type' : '' }
