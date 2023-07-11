@@ -3,10 +3,13 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from .models import File_Results, UserNamesList
 from .forms import FileForm, UserNamesListForm
-from automate import apply_automate_script
-from .util import extract_username_and_assignment, get_user_name, get_file_result, get_file_size
+from .util import extract_username_and_assignment, get_user_name, get_file_result, get_file_size, apply_script_and_update_db
 from django.db.models import Count
 from django.contrib import messages
+from django.http import HttpResponse
+from django.conf import settings
+import os
+from .tasks import automate_zipfile
 
 # Create your views here.
 
@@ -50,6 +53,28 @@ def send_files(request):
           request.session['failed_files'] = failed_files
           messages.error(request, 'Some files failed to upload.')
       return HttpResponseRedirect(reverse('index'))
+
+def automate(request, id):
+  if request.method == 'GET':
+    # Retrieve the File_Results instance
+    apply_script_and_update_db(id)
+
+    return render(request, 'zipfiles/index.html', {
+        'zipfiles': File_Results.objects.all()
+    })
+  
+def automate_all(request):
+    if request.method == 'GET':
+        zipfiles = File_Results.objects.all()
+
+        # Trigger the Celery task for each zipfile
+        for zipfile in zipfiles:
+            automate_zipfile.delay(zipfile.id)
+
+    return render(request, 'zipfiles/index.html', {
+        'zipfiles': zipfiles
+    })
+
 
 #region Files Crud
 def index(request):
@@ -140,29 +165,7 @@ def edit(request, id):
   return HttpResponseRedirect(reverse('index'))
         
 
-def automate(request, id):
-  if request.method == 'GET':
-    # Retrieve the File_Results instance
-    zipfile = get_object_or_404(File_Results, pk=id)
-    
-    # Apply automation script and retrieve the data
-    data = apply_automate_script(zipfile.f_name)
-
-    # Update the attributes based on the data
-    zipfile.db_name = data.get('db_name')
-    zipfile.db_type = data.get('db_type')
-    zipfile.dotnet_version = data.get('version')
-    zipfile.folder_name = data.get('folder_name')
-    zipfile.is_build_succeeded = data.get('build')
-    zipfile.error_details = data.get('error_details')
-
-    # Save the changes
-    zipfile.save()
-    
-    return render(request, 'zipfiles/index.html', {
-        'zipfiles': File_Results.objects.all()
-    })
-
+  
 def dashboard(request):
    # Retrieve data from the File_Results model
     dotnet_data = File_Results.objects.filter(dotnet_version__isnull=False)
@@ -359,3 +362,24 @@ def delete_user(request, pk):
     return render(request, 'zipfiles/user_delete.html', {'user': user})
 
 #endregion
+
+
+def download_file(request, id):
+    # Retrieve the File_Results instance
+    zipfile = get_object_or_404(File_Results, pk=id)
+    
+    # Construct the file path
+    file_path = os.path.join(settings.MEDIA_ROOT, str(zipfile.f_name))
+    
+    # Check if the file exists
+    if os.path.exists(file_path):
+        # Open the file in binary mode for reading
+        with open(file_path, 'rb') as file:
+            # Create the HTTP response with the file as the content
+            response = HttpResponse(file.read(), content_type='application/zip')
+            # Set the Content-Disposition header to force download
+            response['Content-Disposition'] = f'attachment; filename="{zipfile.f_name}"'
+            return response
+    else:
+        # Return a 404 Not Found response if the file does not exist
+        return HttpResponse(status=404)

@@ -199,9 +199,10 @@ def get_version(project_path):
 
 def apply_automate_script(zip_file):
     zip_file = f"{extract_path}/{zip_file}"
-    delete_extracted_folders()
+    # delete_extracted_folders()
     folder_name = extract_zip(zip_file)
     return get_file_data(folder_name)
+
 
 def get_file_data(folder_name):
     result = {}

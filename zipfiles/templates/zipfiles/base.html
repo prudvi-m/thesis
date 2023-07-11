@@ -124,37 +124,37 @@
     <script>
       $(document).ready(function() {
         $('body').on('submit', 'form', function() {
-          apply_loading()
+          apply_loading();
           $(this).find('button[type="submit"]').prop('disabled', true);
         });
-
-        $('body').on('click', 'a', function() {
-          apply_loading()
+    
+        $('body').on('click', 'a:not(.download-link)', function() {
+          apply_loading();
         });
       });
-
-
+    
       function apply_loading() {
         var $parentDiv = $('#parentDiv');
-          var $loadingOverlay = $('<div id="loading-overlay">');
-          var $loadingContainer = $('<div id="loading-container">');
-          var $loadingSpinner = $('<span class="loading-spinner">');
-          var $loadingMessage = $('<span id="loading-message">loading....</span>');
+        var $loadingOverlay = $('<div id="loading-overlay">');
+        var $loadingContainer = $('<div id="loading-container">');
+        var $loadingSpinner = $('<span class="loading-spinner">');
+        var $loadingMessage = $('<span id="loading-message">loading....</span>');
     
-          // Append loading elements to the loading overlay
-          $loadingContainer.append($loadingSpinner);
-          $loadingContainer.append($loadingMessage);
-          $loadingOverlay.append($loadingContainer);
+        // Append loading elements to the loading overlay
+        $loadingContainer.append($loadingSpinner);
+        $loadingContainer.append($loadingMessage);
+        $loadingOverlay.append($loadingContainer);
     
-          // Show the loading overlay and symbol
-          $parentDiv.append($loadingOverlay);
+        // Show the loading overlay and symbol
+        $parentDiv.append($loadingOverlay);
     
-          // Apply the blur effect to the parentDiv
-          $parentDiv.addClass('blur');
+        // Apply the blur effect to the parentDiv
+        $parentDiv.addClass('blur');
     
-          // Disable the submit button to prevent multiple submissions
-          $(this).find('button[type="submit"]').prop('disabled', true);
+        // Disable the submit button to prevent multiple submissions
+        $(this).find('button[type="submit"]').prop('disabled', true);
       }
     </script>
+    
   </body>
 </html>
