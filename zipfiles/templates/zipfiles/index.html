@@ -27,6 +27,9 @@
       <a class="btn btn-primary btn-sm mx-3 my-1" href="{% url 'add' %}">
         <i class="fas fa-file-alt"></i> Add Files
       </a>
+      <a class="btn btn-danger btn-sm mx-3 my-1" href="{% url 'delete_all' %}" title="Delete All Files" id="delete-all-button">
+        <i class="fa-solid fa-trash-can fa-lg"></i> Delete All Files
+      </a>
       {% comment %} <a class="btn btn-info btn-sm mx-3 my-1" href="#" title="Run All Automation Script" id="automate-all-button">
         <i class="fa-solid fa-robot fa-lg"></i> Automate all Files
       </a> {% endcomment %}

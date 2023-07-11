@@ -383,3 +383,10 @@ def download_file(request, id):
     else:
         # Return a 404 Not Found response if the file does not exist
         return HttpResponse(status=404)
+
+def delete_all(request):
+  if request.method == 'GET':
+      # Delete all File_Results instances
+      File_Results.objects.all().delete()
+      
+      return redirect('index')
