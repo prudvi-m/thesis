@@ -30,9 +30,6 @@
       <a class="btn btn-danger btn-sm mx-3 my-1" href="{% url 'delete_all' %}" title="Delete All Files" id="delete-all-button">
         <i class="fa-solid fa-trash-can fa-lg"></i> Delete All Files
       </a>
-      {% comment %} <a class="btn btn-info btn-sm mx-3 my-1" href="#" title="Run All Automation Script" id="automate-all-button">
-        <i class="fa-solid fa-robot fa-lg"></i> Automate all Files
-      </a> {% endcomment %}
       <div>
         <table class="table table-hover">
           <thead class="thead-dark">
@@ -121,12 +118,12 @@
                           <h5 class="modal-title">
                             File {{ zipfile.f_name|default:"" }} {{ zipfile.db_name|default:"" }}
                           </h5>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                          <button type="button" class="btn-close" data-bsdismiss="modal" aria-label="Close">
                             <span aria-hidden="true"></span>
                           </button>
                         </div>
                         <div class="modal-body">
-                          <p>Are you sure you want to delete this zipfile?</p>
+                          <p>Are you sure you want to delete this file?</p>
                         </div>
                         <div class="modal-footer">
                           <form action="{% url 'delete' zipfile.id %}" method="POST">
@@ -151,15 +148,11 @@
   </div>
 </div>
 <script>
-  document.getElementById('automate-all-button').addEventListener('click', async function(event) {
-      event.preventDefault();
-      const response = await fetch("{% url 'automate_all' %}");
-      if (response.ok) {
-          // Reload the page or perform any desired action
-          location.reload();
-      } else {
-          console.error('Failed to automate all files.');
-      }
+  document.getElementById('delete-all-button').addEventListener('click', function(event) {
+    event.preventDefault();
+    if (confirm('Are you sure you want to delete all files?')) {
+      window.location.href = "{% url 'delete_all' %}";
+    }
   });
 </script>
 {% endblock %}
