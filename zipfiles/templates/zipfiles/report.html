@@ -61,8 +61,8 @@
 
   {% if missing_user_names %}
     <div class="container mt-4">
-      <h3>Emails of Missing User Names</h3>
-      <table class="table">
+      <h3>Emails of Not Submitted:</h3>
+      <table class="table" id="missing-emails-table">
         <thead>
           <tr>
             <th>Email</th>
@@ -71,7 +71,7 @@
         <tbody>
           {% for missing_user_name in missing_user_names %}
             <tr>
-              <td>{{ missing_user_name }}</td>
+              <td>{{ missing_user_name }}@student.govst.edu</td>
             </tr>
           {% empty %}
             <tr>
@@ -82,7 +82,7 @@
       </table>
 
       {% if missing_user_names %}
-      <button type="button" class="btn btn-sm btn-primary" id="copy-missing-emails">
+      <button type="button" class="btn btn-sm btn-primary" onclick="CopyMissingEmails()" id="copy-missing-emails">
         <i class="fas fa-copy"></i> Copy Emails
       </button>
       {% endif %}
@@ -139,13 +139,15 @@
       alert('Emails copied!');
     });
   
-    document.getElementById('copy-missing-emails').addEventListener('click', function() {
+    
+
+    function CopyMissingEmails() {
       var missingEmails = Array.from(document.querySelectorAll('#missing-emails-table tbody tr td:first-child')).map(function(td) {
         return td.textContent.trim();
       }).join('\n');
       copyToClipboard(missingEmails);
       alert('Missing emails copied!');
-    });
+    }
   
     var submissionDropdown = document.getElementById('submission');
     var statusDropdown = document.getElementById('status');

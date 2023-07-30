@@ -236,4 +236,37 @@ Build FAILED.
     3 Error(s)
 
 Time Elapsed 00:00:02.46
+"b"MSBuild version 17.4.1+9a89d02ff for .NET
+  Determining projects to restore...
+  Restored /Users/prudvi/Desktop/Desktop_folder/ui/media/Bookstore/Bookstore.csproj (in 448 ms).
+/Users/prudvi/Desktop/Desktop_folder/ui/media/Bookstore/Areas/Admin/Controllers/UserController.cs(41,25): warning CS8600: Converting null literal or possible null value to non-nullable type. [/Users/prudvi/Desktop/Desktop_folder/ui/media/Bookstore/Bookstore.csproj]
+/Users/prudvi/Desktop/Desktop_folder/ui/media/Bookstore/Controllers/AccountController.cs(113,29): warning CS8600: Converting null literal or possible null value to non-nullable type. [/Users/prudvi/Desktop/Desktop_folder/ui/media/Bookstore/Bookstore.csproj]
+/Users/prudvi/Desktop/Desktop_folder/ui/media/Bookstore/Controllers/AccountController.cs(114,68): warning CS8604: Possible null reference argument for parameter user in Task<IdentityResult> UserManager<User>.ChangePasswordAsync(User user, string currentPassword, string newPassword). [/Users/prudvi/Desktop/Desktop_folder/ui/media/Bookstore/Bookstore.csproj]
+/Users/prudvi/Desktop/Desktop_folder/ui/media/Bookstore/Areas/Admin/Controllers/UserController.cs(90,38): warning CS8600: Converting null literal or possible null value to non-nullable type. [/Users/prudvi/Desktop/Desktop_folder/ui/media/Bookstore/Bookstore.csproj]
+/Users/prudvi/Desktop/Desktop_folder/ui/media/Bookstore/Areas/Admin/Controllers/UserController.cs(98,29): warning CS8600: Converting null literal or possible null value to non-nullable type. [/Users/prudvi/Desktop/Desktop_folder/ui/media/Bookstore/Bookstore.csproj]
+/Users/prudvi/Desktop/Desktop_folder/ui/media/Bookstore/Areas/Admin/Controllers/UserController.cs(99,50): warning CS8604: Possible null reference argument for parameter user in Task<IdentityResult> UserManager<User>.AddToRoleAsync(User user, string role). [/Users/prudvi/Desktop/Desktop_folder/ui/media/Bookstore/Bookstore.csproj]
+/Users/prudvi/Desktop/Desktop_folder/ui/media/Bookstore/Areas/Admin/Controllers/UserController.cs(99,56): warning CS8604: Possible null reference argument for parameter role in Task<IdentityResult> UserManager<User>.AddToRoleAsync(User user, string role). [/Users/prudvi/Desktop/Desktop_folder/ui/media/Bookstore/Bookstore.csproj]
+/Users/prudvi/Desktop/Desktop_folder/ui/media/Bookstore/Areas/Admin/Controllers/UserController.cs(107,25): warning CS8600: Converting null literal or possible null value to non-nullable type. [/Users/prudvi/Desktop/Desktop_folder/ui/media/Bookstore/Bookstore.csproj]
+/Users/prudvi/Desktop/Desktop_folder/ui/media/Bookstore/Areas/Admin/Controllers/UserController.cs(108,64): warning CS8604: Possible null reference argument for parameter user in Task<IdentityResult> UserManager<User>.RemoveFromRoleAsync(User user, string role). [/Users/prudvi/Desktop/Desktop_folder/ui/media/Bookstore/Bookstore.csproj]
+/Users/prudvi/Desktop/Desktop_folder/ui/media/Bookstore/Areas/Admin/Controllers/UserController.cs(116,33): warning CS8600: Converting null literal or possible null value to non-nullable type. [/Users/prudvi/Desktop/Desktop_folder/ui/media/Bookstore/Bookstore.csproj]
+/Users/prudvi/Desktop/Desktop_folder/ui/media/Bookstore/Areas/Admin/Controllers/UserController.cs(117,56): warning CS8604: Possible null reference argument for parameter role in Task<IdentityResult> RoleManager<IdentityRole>.DeleteAsync(IdentityRole role). [/Users/prudvi/Desktop/Desktop_folder/ui/media/Bookstore/Bookstore.csproj]
+  Bookstore -> /Users/prudvi/Desktop/Desktop_folder/ui/media/Bookstore/bin/Debug/net7.0/Bookstore.dll
+
+Build succeeded.
+
+/Users/prudvi/Desktop/Desktop_folder/ui/media/Bookstore/Areas/Admin/Controllers/UserController.cs(41,25): warning CS8600: Converting null literal or possible null value to non-nullable type. [/Users/prudvi/Desktop/Desktop_folder/ui/media/Bookstore/Bookstore.csproj]
+/Users/prudvi/Desktop/Desktop_folder/ui/media/Bookstore/Controllers/AccountController.cs(113,29): warning CS8600: Converting null literal or possible null value to non-nullable type. [/Users/prudvi/Desktop/Desktop_folder/ui/media/Bookstore/Bookstore.csproj]
+/Users/prudvi/Desktop/Desktop_folder/ui/media/Bookstore/Controllers/AccountController.cs(114,68): warning CS8604: Possible null reference argument for parameter user in Task<IdentityResult> UserManager<User>.ChangePasswordAsync(User user, string currentPassword, string newPassword). [/Users/prudvi/Desktop/Desktop_folder/ui/media/Bookstore/Bookstore.csproj]
+/Users/prudvi/Desktop/Desktop_folder/ui/media/Bookstore/Areas/Admin/Controllers/UserController.cs(90,38): warning CS8600: Converting null literal or possible null value to non-nullable type. [/Users/prudvi/Desktop/Desktop_folder/ui/media/Bookstore/Bookstore.csproj]
+/Users/prudvi/Desktop/Desktop_folder/ui/media/Bookstore/Areas/Admin/Controllers/UserController.cs(98,29): warning CS8600: Converting null literal or possible null value to non-nullable type. [/Users/prudvi/Desktop/Desktop_folder/ui/media/Bookstore/Bookstore.csproj]
+/Users/prudvi/Desktop/Desktop_folder/ui/media/Bookstore/Areas/Admin/Controllers/UserController.cs(99,50): warning CS8604: Possible null reference argument for parameter user in Task<IdentityResult> UserManager<User>.AddToRoleAsync(User user, string role). [/Users/prudvi/Desktop/Desktop_folder/ui/media/Bookstore/Bookstore.csproj]
+/Users/prudvi/Desktop/Desktop_folder/ui/media/Bookstore/Areas/Admin/Controllers/UserController.cs(99,56): warning CS8604: Possible null reference argument for parameter role in Task<IdentityResult> UserManager<User>.AddToRoleAsync(User user, string role). [/Users/prudvi/Desktop/Desktop_folder/ui/media/Bookstore/Bookstore.csproj]
+/Users/prudvi/Desktop/Desktop_folder/ui/media/Bookstore/Areas/Admin/Controllers/UserController.cs(107,25): warning CS8600: Converting null literal or possible null value to non-nullable type. [/Users/prudvi/Desktop/Desktop_folder/ui/media/Bookstore/Bookstore.csproj]
+/Users/prudvi/Desktop/Desktop_folder/ui/media/Bookstore/Areas/Admin/Controllers/UserController.cs(108,64): warning CS8604: Possible null reference argument for parameter user in Task<IdentityResult> UserManager<User>.RemoveFromRoleAsync(User user, string role). [/Users/prudvi/Desktop/Desktop_folder/ui/media/Bookstore/Bookstore.csproj]
+/Users/prudvi/Desktop/Desktop_folder/ui/media/Bookstore/Areas/Admin/Controllers/UserController.cs(116,33): warning CS8600: Converting null literal or possible null value to non-nullable type. [/Users/prudvi/Desktop/Desktop_folder/ui/media/Bookstore/Bookstore.csproj]
+/Users/prudvi/Desktop/Desktop_folder/ui/media/Bookstore/Areas/Admin/Controllers/UserController.cs(117,56): warning CS8604: Possible null reference argument for parameter role in Task<IdentityResult> RoleManager<IdentityRole>.DeleteAsync(IdentityRole role). [/Users/prudvi/Desktop/Desktop_folder/ui/media/Bookstore/Bookstore.csproj]
+    11 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:08.16
 "

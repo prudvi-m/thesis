@@ -12,7 +12,6 @@ import os
 from .tasks import automate_zipfile
 
 # Create your views here.
-
 def send_files(request):
     if request.method == "POST" :
       myfile = request.FILES.getlist("uploadfoles")
