@@ -58,10 +58,7 @@ def automate(request, id):
   if request.method == 'GET':
     # Retrieve the File_Results instance
     apply_script_and_update_db(id)
-
-    return render(request, 'zipfiles/index.html', {
-        'zipfiles': File_Results.objects.all()
-    })
+    return HttpResponseRedirect(reverse('index'))
   
 def automate_all(request):
     if request.method == 'GET':
@@ -70,10 +67,7 @@ def automate_all(request):
         # Trigger the Celery task for each zipfile
         for zipfile in zipfiles:
             automate_zipfile.delay(zipfile.id)
-
-    return render(request, 'zipfiles/index.html', {
-        'zipfiles': zipfiles
-    })
+    return HttpResponseRedirect(reverse('index'))
 
 
 #region Files Crud
