@@ -56,7 +56,7 @@
                 <td class="align-middle">{{ zipfile.is_build_succeeded|default:"" }}</td>
                 <td class="align-middle">{{ zipfile.dotnet_version|default:"" }}</td>
                 <td>
-                  <a class="btn btn-success me-1" href="{% url 'view_info' zipfile.id %}" data-bs-toggle="modal" data-bs-target="#myModal{{zipfile.id}}" title="Info">
+                  <a class="btn btn-success me-1 download-link" href="{% url 'view_info' zipfile.id %}" data-bs-toggle="modal" data-bs-target="#myModal{{zipfile.id}}" title="Info">
                     <i class="fa-solid fa-circle-info fa-lg"></i>
                   </a>
 
