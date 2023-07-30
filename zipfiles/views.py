@@ -62,10 +62,8 @@ def automate(request, id):
 def automate_all(request):
     if request.method == 'GET':
         zipfiles = File_Results.objects.all()
-
-        # Trigger the Celery task for each zipfile
         for zipfile in zipfiles:
-            automate_zipfile.delay(zipfile.id)
+            apply_script_and_update_db(zipfile.id)
     return HttpResponseRedirect(reverse('index'))
 
 
